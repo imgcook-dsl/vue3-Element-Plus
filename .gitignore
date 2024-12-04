@@ -1,0 +1,17 @@
+node_modules
+
+dist
+
+pnpm-lock.yaml
+
+commit.sh
+
+.env.local
+
+.env.staging
+
+.DS_Store
+
+package-lock.json
+
+.idea
