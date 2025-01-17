@@ -1,4 +1,4 @@
-English | [简体中文](https://github.com/imgcook-dsl/dsl-template/blob/master/README.zh-CN.md)
+English | [简体中文](https://github.com/imgcook-dsl/vue/blob/master/README.zh-CN.md)
 
 ## Abstract
 

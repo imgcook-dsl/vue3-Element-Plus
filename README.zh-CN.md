@@ -1,4 +1,4 @@
-简体中文 | [English](https://github.com/imgcook-dsl/dsl-template/blob/master/README.md)
+简体中文 | [English](https://github.com/imgcook-dsl/h5-standard/blob/master/README.md)
 
 ## 概述
 

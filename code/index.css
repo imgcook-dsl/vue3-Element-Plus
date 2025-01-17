@@ -1,0 +1,989 @@
+.page {
+  position: relative;
+  align-items: flex-start;
+  background-color: #f2f2f2;
+  width: 100vw;
+  overflow: hidden;
+}
+.block {
+  position: absolute;
+  top: 0;
+  align-items: center;
+  align-self: center;
+}
+.banner {
+  width: 100vw;
+  height: 61.33vw;
+}
+.hd {
+  position: relative;
+  align-items: flex-start;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i4/O1CN017Th4x91CNBbD9ej7N_!!6000000000068-2-tps-1500-352.png);
+  width: 100vw;
+  height: 23.47vw;
+}
+.normalDiv {
+  position: relative;
+  align-items: center;
+  margin-top: 3.47vw;
+  margin-left: 6.67vw;
+  width: 89.6vw;
+  height: 5.33vw;
+}
+.txt {
+  line-height: 3.73vw;
+  white-space: nowrap;
+  color: #ffffff;
+  font-size: 3.73vw;
+  font-weight: 500;
+}
+.normalDiv1 {
+  align-items: center;
+  margin-top: -0.13vw;
+}
+.mark {
+  margin-top: 0.13vw;
+  margin-right: 1.33vw;
+  width: 4.67vw;
+  height: 2.93vw;
+}
+.iconWifi {
+  margin-right: 1.2vw;
+  width: 4.13vw;
+  height: 3.07vw;
+}
+.block1 {
+  align-items: center;
+  margin-top: 0.13vw;
+  margin-right: 0.27vw;
+  border-width: 0.27vw;
+  border-style: solid;
+  border-radius: 0.67vw;
+  border-color: rgba(255, 255, 255, 0.35);
+  width: 5.87vw;
+  height: 2.93vw;
+}
+.color {
+  border-radius: 0.27vw;
+  background-color: #ffffff;
+  width: 4.8vw;
+  height: 1.87vw;
+}
+.dot {
+  margin-top: 0.13vw;
+  width: 0.4vw;
+  height: 1.07vw;
+}
+.normalDiv2 {
+  position: relative;
+  align-items: center;
+  align-self: center;
+  margin-top: 5.6vw;
+}
+.normalDiv3 {
+  align-items: center;
+  margin-right: 30.8vw;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i2/O1CN01CGA1Mx1lQOw3D6mni_!!6000000004813-2-tps-96-96.png);
+  width: 6.4vw;
+  height: 6.4vw;
+}
+.icon {
+  width: 2.67vw;
+  height: 4.8vw;
+}
+.logo {
+  margin-top: -0.27vw;
+  margin-right: 30.8vw;
+  width: 19.2vw;
+  height: 5.6vw;
+}
+.normalDiv4 {
+  align-items: center;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i3/O1CN01FMFaE71jENInBF32M_!!6000000004516-2-tps-96-96.png);
+  width: 6.4vw;
+  height: 6.4vw;
+}
+.icon1 {
+  margin-top: 0.13vw;
+  margin-right: 0.8vw;
+  width: 0.93vw;
+  height: 0.93vw;
+}
+.icon2 {
+  margin-top: 0.13vw;
+  margin-right: 0.8vw;
+  width: 0.93vw;
+  height: 0.93vw;
+}
+.icon3 {
+  margin-top: 0.13vw;
+  width: 0.93vw;
+  height: 0.93vw;
+}
+.bd {
+  position: relative;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100vw;
+  height: 11.73vw;
+  overflow: hidden;
+}
+.normalDiv5 {
+  position: relative;
+  margin-top: 3.2vw;
+  margin-left: 3.2vw;
+  height: 5.33vw;
+}
+.word {
+  margin-right: 6.4vw;
+  line-height: 4.8vw;
+  white-space: nowrap;
+  color: #ffffff;
+  font-size: 4.8vw;
+  font-weight: 500;
+}
+.text {
+  margin-right: 6.4vw;
+  line-height: 4.27vw;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 4.27vw;
+}
+.txt1 {
+  margin-right: 6.4vw;
+  line-height: 4.27vw;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 4.27vw;
+}
+.word1 {
+  line-height: 4.27vw;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 4.27vw;
+}
+.colorDiv {
+  position: relative;
+  margin-top: 1.33vw;
+  margin-left: 5.6vw;
+  border-radius: 0.4vw;
+  background-color: #fee900;
+  width: 4.8vw;
+  height: 0.8vw;
+}
+.main {
+  position: relative;
+  align-items: flex-start;
+  align-self: center;
+  margin-top: 2.67vw;
+  border-radius: 3.2vw;
+  background-color: #ffffff;
+  width: 93.6vw;
+  height: 86.67vw;
+  overflow: hidden;
+}
+.color1 {
+  position: absolute;
+  top: 27.47vw;
+  left: 3.2vw;
+  border-radius: 1.6vw;
+  background-color: #f5f5f5;
+  width: 42.53vw;
+  height: 42.53vw;
+  overflow: hidden;
+}
+.icon4 {
+  position: absolute;
+  top: 10.93vw;
+  left: 16.53vw;
+  width: 3.33vw;
+  height: 2.8vw;
+  overflow: hidden;
+}
+.normalDiv6 {
+  position: relative;
+  align-self: center;
+  margin-top: 4vw;
+}
+.normalDiv7 {
+  align-items: flex-start;
+  margin-right: 2.13vw;
+  border-radius: 5.33vw;
+  background-color: rgba(51, 51, 51, 0.03);
+  width: 10.67vw;
+  height: 10.67vw;
+  overflow: hidden;
+}
+.largeIcon {
+  margin-top: 2.27vw;
+  width: 9.07vw;
+  height: 7.33vw;
+}
+.normalDiv8 {
+  align-items: flex-start;
+  margin-top: 0.53vw;
+  margin-right: 1.33vw;
+  width: 28.53vw;
+}
+.shopTitle {
+  position: relative;
+  align-self: center;
+  max-width: 28.53vw;
+  height: 4.53vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 4.53vw;
+  white-space: nowrap;
+  color: #333333;
+  font-size: 4vw;
+  font-weight: 500;
+}
+.block2 {
+  position: relative;
+  margin-top: 0.67vw;
+}
+.count {
+  position: absolute;
+  top: 0.8vw;
+  left: 5.07vw;
+  line-height: 3.73vw;
+  white-space: nowrap;
+  color: #f2aa00;
+  font-size: 3.2vw;
+  font-weight: 600;
+}
+.group {
+  position: relative;
+  align-items: center;
+  margin-right: 4.8vw;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i4/O1CN016kEOsf1sXujwF668T_!!6000000005777-2-tps-100-100.png);
+  width: 6.67vw;
+  height: 6.67vw;
+}
+.icon5 {
+  margin-top: 0.13vw;
+  width: 1.33vw;
+  height: 1.2vw;
+  overflow: hidden;
+}
+.word2 {
+  position: relative;
+  margin-top: 0.67vw;
+  line-height: 3.73vw;
+  white-space: nowrap;
+  color: #999999;
+  font-size: 3.2vw;
+  font-weight: 300;
+}
+.label {
+  margin-top: 1.2vw;
+  margin-right: 1.33vw;
+  width: 6.4vw;
+  height: 3.2vw;
+}
+.normalDiv9 {
+  margin-top: 1.2vw;
+  margin-right: 4.8vw;
+  border-width: 0.13vw;
+  border-style: solid;
+  border-radius: 0.53vw;
+  border-color: #ffacbc;
+  background-color: #ffffff;
+  width: 11.2vw;
+  height: 3.2vw;
+}
+.txtBenifit {
+  margin-left: 0.67vw;
+  line-height: 2.4vw;
+  white-space: nowrap;
+  color: #ff4d70;
+  font-size: 2.4vw;
+}
+.buttonWrap {
+  align-items: center;
+  margin-top: 2.13vw;
+  margin-right: 3.73vw;
+  border-width: 0.27vw;
+  border-style: solid;
+  border-radius: 3.2vw;
+  border-color: #ff9500;
+  width: 14.67vw;
+  height: 6.4vw;
+}
+.button {
+  max-width: 13.07vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #ff9500;
+  font-size: 3.47vw;
+}
+.icon6 {
+  margin-top: 4.67vw;
+  width: 2.4vw;
+  height: 1.33vw;
+}
+.icon7 {
+  position: absolute;
+  top: 10.13vw;
+  left: 15.47vw;
+  width: 3.07vw;
+  height: 3.2vw;
+}
+.logo1 {
+  position: absolute;
+  top: 4vw;
+  left: 0.53vw;
+  width: 16.13vw;
+  height: 10.67vw;
+}
+.normalDiv10 {
+  position: relative;
+  margin-top: 0.4vw;
+  margin-left: 3.2vw;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i4/O1CN01CMguLQ1mIu47Y7rAx_!!6000000004932-2-tps-856-102.png);
+  width: 57.07vw;
+  height: 6.8vw;
+}
+.info {
+  margin-top: 2.53vw;
+  margin-left: 2.13vw;
+  line-height: 2.67vw;
+  white-space: nowrap;
+  color: #999999;
+  font-size: 2.93vw;
+}
+.num {
+  margin-top: 2.67vw;
+  line-height: 2.67vw;
+  white-space: nowrap;
+  color: #ffaa00;
+  font-size: 2.93vw;
+}
+.txt2 {
+  margin-top: 2.53vw;
+  margin-right: 1.87vw;
+  line-height: 2.67vw;
+  white-space: nowrap;
+  color: #999999;
+  font-size: 2.93vw;
+}
+.word3 {
+  margin-top: 2.13vw;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #999999;
+  font-size: 2.93vw;
+}
+.text1 {
+  margin-top: 2.13vw;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #999999;
+  font-size: 2.93vw;
+}
+.txt3 {
+  position: absolute;
+  top: 18.93vw;
+  right: 32.93vw;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #999999;
+  font-size: 2.93vw;
+}
+.word4 {
+  position: absolute;
+  top: 18.93vw;
+  right: 40.53vw;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #999999;
+  font-size: 2.93vw;
+}
+.normalDiv11 {
+  position: relative;
+  margin-top: 1.73vw;
+  margin-left: 0.8vw;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i4/O1CN01a29Ac91kr8R94SGpI_!!6000000004736-2-tps-730-728.png);
+  width: 48.67vw;
+  height: 48.53vw;
+}
+.colorDiv1 {
+  margin-top: 2.13vw;
+  margin-left: 2.4vw;
+  border-radius: 1.6vw;
+  background-color: rgba(0, 0, 0, 0.03);
+  width: 42.53vw;
+  height: 42.53vw;
+  overflow: hidden;
+}
+.desc {
+  position: absolute;
+  top: 73.33vw;
+  left: 4.53vw;
+  line-height: 4.27vw;
+  white-space: nowrap;
+  color: #333333;
+  font-size: 3.2vw;
+  font-weight: 300;
+}
+.desc1 {
+  position: absolute;
+  top: 73.33vw;
+  right: 6.13vw;
+  line-height: 4.27vw;
+  white-space: nowrap;
+  color: #333333;
+  font-size: 3.2vw;
+  font-weight: 300;
+}
+.color2 {
+  position: absolute;
+  top: 27.47vw;
+  right: 3.33vw;
+  border-radius: 1.6vw;
+  background-color: #f5f5f5;
+  width: 42.53vw;
+  height: 42.53vw;
+  overflow: hidden;
+}
+.normalDiv12 {
+  position: absolute;
+  top: 25.73vw;
+  right: 0.93vw;
+  align-items: flex-start;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i1/O1CN017BaFvj1QrKHrLkSkV_!!6000000002029-2-tps-712-712.png);
+  width: 47.47vw;
+  height: 47.47vw;
+}
+.colorDiv2 {
+  margin-top: 1.73vw;
+  border-radius: 1.6vw;
+  background-color: rgba(0, 0, 0, 0.03);
+  width: 42.53vw;
+  height: 42.53vw;
+  overflow: hidden;
+}
+.moneyWrap {
+  position: relative;
+  align-items: center;
+  margin-top: 4.8vw;
+  margin-left: 4.53vw;
+  width: 54.93vw;
+  height: 4.27vw;
+}
+.moneyLabel {
+  line-height: 3.73vw;
+  letter-spacing: 0;
+  white-space: pre;
+  color: #3e3e3e;
+  font-size: 3.73vw;
+}
+.money {
+  line-height: 3.73vw;
+  letter-spacing: 0;
+  white-space: pre;
+  color: #3e3e3e;
+  font-size: 3.73vw;
+}
+.ft {
+  position: relative;
+  margin-top: 3.2vw;
+}
+.normalDiv13 {
+  position: relative;
+  height: 135.73vw;
+}
+.block3 {
+  position: relative;
+  align-items: flex-end;
+  width: 99.2vw;
+}
+.block4 {
+  position: relative;
+  align-items: flex-start;
+  margin-bottom: 9.6vw;
+  border-radius: 3.2vw;
+  background-color: #ffffff;
+  width: 93.6vw;
+  height: 86.67vw;
+  overflow: hidden;
+}
+.shop {
+  position: absolute;
+  top: 25.33vw;
+  left: 0.93vw;
+  width: 48.53vw;
+  height: 48.53vw;
+}
+.icon8 {
+  position: absolute;
+  top: 10.93vw;
+  left: 16.53vw;
+  width: 3.33vw;
+  height: 2.8vw;
+  overflow: hidden;
+}
+.block5 {
+  position: relative;
+  align-self: center;
+  margin-top: 4vw;
+}
+.container {
+  position: relative;
+  align-items: center;
+  margin-right: 2.13vw;
+  border-radius: 5.33vw;
+  background-color: rgba(51, 51, 51, 0.03);
+  overflow: hidden;
+}
+.normalDiv14 {
+  align-items: center;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i4/O1CN01k44A2D1oTYVbk7vfc_!!6000000005226-2-tps-160-160.png);
+}
+.color3 {
+  border-radius: 5.33vw;
+  background-color: rgba(51, 51, 51, 0.03);
+  width: 10.67vw;
+  height: 10.67vw;
+  overflow: hidden;
+}
+.block6 {
+  position: relative;
+  align-items: flex-start;
+  margin-top: 0.53vw;
+  margin-right: 13.2vw;
+}
+.shopTitle1 {
+  position: relative;
+  margin-left: 0.53vw;
+  max-width: 39.33vw;
+  height: 4.53vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 4.53vw;
+  white-space: nowrap;
+  color: #333333;
+  font-size: 4vw;
+  font-weight: 500;
+}
+.normalDiv15 {
+  position: relative;
+  margin-top: 0.67vw;
+}
+.num1 {
+  position: absolute;
+  top: 0.8vw;
+  left: 5.07vw;
+  line-height: 3.73vw;
+  white-space: nowrap;
+  color: #f2aa00;
+  font-size: 3.2vw;
+  font-weight: 600;
+}
+.normalDiv16 {
+  position: relative;
+  align-items: center;
+  margin-right: 4.8vw;
+}
+.largeIcon1 {
+  position: relative;
+  width: 6.67vw;
+  height: 6.67vw;
+}
+.icon9 {
+  position: absolute;
+  top: 2.8vw;
+  right: 2.4vw;
+  width: 1.33vw;
+  height: 1.2vw;
+  overflow: hidden;
+}
+.normalDiv17 {
+  position: relative;
+  margin-bottom: 2.27vw;
+  height: 3.73vw;
+}
+.shopTitle2 {
+  margin-right: 1.87vw;
+  line-height: 3.2vw;
+  white-space: nowrap;
+  color: #999999;
+  font-size: 3.2vw;
+  font-weight: 300;
+}
+.txt4 {
+  line-height: 3.2vw;
+  white-space: nowrap;
+  color: #999999;
+  font-size: 3.2vw;
+  font-weight: 300;
+}
+.icon10 {
+  position: absolute;
+  top: 6.13vw;
+  left: 12.27vw;
+  width: 3.07vw;
+  height: 3.2vw;
+}
+.buttonWrap1 {
+  position: relative;
+  align-items: center;
+  margin-top: 2.13vw;
+  margin-right: 3.73vw;
+  border-width: 0.27vw;
+  border-style: solid;
+  border-radius: 3.2vw;
+  border-color: #ff9500;
+  width: 14.67vw;
+  height: 6.4vw;
+}
+.button1 {
+  max-width: 13.07vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #ff9500;
+  font-size: 3.47vw;
+}
+.icon11 {
+  position: relative;
+  margin-top: 4.67vw;
+  width: 2.4vw;
+  height: 1.33vw;
+}
+.txtBgWrap {
+  position: relative;
+  margin-top: 0.4vw;
+  margin-left: 3.2vw;
+  width: 45.07vw;
+  height: 6.67vw;
+}
+.txtBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45.07vw;
+  height: 6.67vw;
+}
+.text2 {
+  position: absolute;
+  top: 2.13vw;
+  left: 16.4vw;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #666666;
+  font-size: 2.93vw;
+}
+.txt5 {
+  position: relative;
+  margin-top: 2.13vw;
+  margin-right: 9.73vw;
+  margin-left: 2.13vw;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #ff9500;
+  font-size: 2.93vw;
+}
+.word5 {
+  position: relative;
+  margin-top: 2.13vw;
+  margin-right: 4.27vw;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #666666;
+  font-size: 2.93vw;
+}
+.text3 {
+  position: relative;
+  margin-top: 2.13vw;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #666666;
+  font-size: 2.93vw;
+}
+.txt6 {
+  position: absolute;
+  top: 2.13vw;
+  right: 7.47vw;
+  line-height: 3.47vw;
+  white-space: nowrap;
+  color: #666666;
+  font-size: 2.93vw;
+}
+.block7 {
+  position: relative;
+  align-items: center;
+  margin-top: 4vw;
+  margin-left: 3.2vw;
+  border-radius: 1.6vw;
+  background-color: #f5f5f5;
+  width: 42.67vw;
+  height: 42.67vw;
+  overflow: hidden;
+}
+.colorDiv3 {
+  position: relative;
+  margin-top: 0.67vw;
+  margin-left: 6.4vw;
+  border-radius: 1.6vw;
+  background-color: rgba(0, 0, 0, 0.03);
+  width: 42.67vw;
+  height: 42.67vw;
+  overflow: hidden;
+}
+.layerWrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  align-items: flex-start;
+  width: 65.33vw;
+  height: 69.47vw;
+}
+.layer {
+  position: absolute;
+  top: 0;
+  align-self: center;
+  width: 65.33vw;
+  height: 69.47vw;
+}
+.color4 {
+  position: relative;
+  margin-top: 0.67vw;
+  margin-left: 6.4vw;
+  border-radius: 1.6vw;
+  background-color: rgba(0, 0, 0, 0.03);
+  width: 42.67vw;
+  height: 42.67vw;
+  overflow: hidden;
+}
+.desc2 {
+  position: relative;
+  margin-top: 3.2vw;
+  margin-left: 7.73vw;
+  max-width: 49.87vw;
+  height: 4.27vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 4.27vw;
+  white-space: nowrap;
+  color: #333333;
+  font-size: 3.2vw;
+  font-weight: 300;
+}
+.moneyWrap1 {
+  position: relative;
+  align-items: center;
+  margin-top: 1.07vw;
+  margin-left: 7.73vw;
+  width: 54.93vw;
+  height: 4.27vw;
+}
+.moneyLabel1 {
+  line-height: 3.73vw;
+  letter-spacing: 0;
+  white-space: pre;
+  color: #3e3e3e;
+  font-size: 3.73vw;
+}
+.money1 {
+  line-height: 3.73vw;
+  letter-spacing: 0;
+  white-space: pre;
+  color: #3e3e3e;
+  font-size: 3.73vw;
+}
+.desc3 {
+  position: absolute;
+  top: 73.33vw;
+  right: 8.53vw;
+  line-height: 4.27vw;
+  white-space: nowrap;
+  color: #333333;
+  font-size: 3.2vw;
+  font-weight: 300;
+}
+.colorDiv4 {
+  position: absolute;
+  top: 27.47vw;
+  right: 5.6vw;
+  border-radius: 1.6vw;
+  background-color: rgba(0, 0, 0, 0.03);
+  width: 42.67vw;
+  height: 42.67vw;
+  overflow: hidden;
+}
+.shopLong {
+  position: absolute;
+  right: 0;
+  bottom: 1.33vw;
+  width: 50.67vw;
+  height: 67.47vw;
+}
+.cover {
+  position: absolute;
+  right: 2.4vw;
+  bottom: 5.87vw;
+  width: 93.6vw;
+  height: 40vw;
+  overflow: hidden;
+}
+.banner1 {
+  position: absolute;
+  right: 2.4vw;
+  bottom: 0;
+  width: 93.6vw;
+  height: 77.07vw;
+}
+.normalDiv18 {
+  position: absolute;
+  bottom: 2.13vw;
+  left: 0;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i1/O1CN016CyQKl1YIX7l3c37V_!!6000000003036-2-tps-1194-780.png);
+  width: 79.6vw;
+  height: 52vw;
+}
+.block8 {
+  align-items: flex-start;
+  margin-top: 5.07vw;
+  margin-left: 3.2vw;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i4/O1CN01mEAKOp1WbeQVaEgqN_!!6000000002807-2-tps-1014-648.png);
+  width: 67.6vw;
+  height: 43.2vw;
+}
+.block9 {
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 8.53vw;
+  border-top-right-radius: 3.2vw;
+  border-bottom-right-radius: 3.2vw;
+  background-color: rgba(219, 188, 159, 0.9);
+  padding-right: 2.67vw;
+  padding-left: 2.67vw;
+  height: 6.4vw;
+}
+.text4 {
+  line-height: 3.73vw;
+  white-space: nowrap;
+  color: #2f1d06;
+  font-size: 3.73vw;
+  font-weight: 500;
+}
+.title {
+  webkit-box-orient: vertical;
+  display: -webkit-inline-box;
+  webkit-line-clamp: 2;
+  position: relative;
+  margin-top: 2.67vw;
+  margin-left: 3.73vw;
+  width: 32vw;
+  height: 11.2vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 5.6vw;
+  color: #ffffff;
+  font-size: 4vw;
+  font-weight: 500;
+}
+.group1 {
+  position: relative;
+  margin-top: 3.2vw;
+  margin-left: 3.73vw;
+  height: 3.73vw;
+}
+.container1 {
+  align-items: center;
+  margin-right: 1.07vw;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i1/O1CN01XpP0Ki1pDoVonWtyy_!!6000000005327-2-tps-52-48.png);
+  overflow: hidden;
+}
+.icon12 {
+  width: 3.47vw;
+  height: 3.2vw;
+}
+.word6 {
+  line-height: 3.2vw;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 3.2vw;
+  font-weight: 300;
+}
+.normalDiv19 {
+  position: absolute;
+  right: 2.4vw;
+  bottom: 0;
+  align-items: flex-end;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i1/O1CN01lCe7aA1NDX1fdtInA_!!6000000001536-2-tps-712-838.png);
+  width: 47.47vw;
+  height: 55.87vw;
+}
+.storeWrap {
+  position: relative;
+  align-items: center;
+  margin-top: 17.6vw;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i3/O1CN01KJctGc1ncsxhnZRVN_!!6000000005111-2-tps-420-420.png);
+  width: 28vw;
+  height: 28vw;
+  overflow: hidden;
+}
+.store {
+  margin-top: -0.67vw;
+  width: 25.2vw;
+  height: 24.93vw;
+}
+.block10 {
+  position: relative;
+  margin-top: 0.4vw;
+  border-radius: 0.4vw;
+  background-color: rgba(255, 255, 255, 0.35);
+  width: 10.67vw;
+}
+.color5 {
+  border-radius: 0.4vw;
+  background-color: #ffffff;
+  width: 2.13vw;
+  height: 0.8vw;
+}
+.shopWrap {
+  position: absolute;
+  right: 30vw;
+  bottom: 10.27vw;
+  align-items: flex-start;
+  width: 30.8vw;
+  height: 28vw;
+}
+.shop1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 28vw;
+  height: 28vw;
+  overflow: hidden;
+}
+.storeWrap1 {
+  position: relative;
+  margin-top: 0.67vw;
+  background-size: contain;
+  background-image: url(https://img.alicdn.com/imgextra/i3/O1CN01nwuXR41cGToUWK8y0_!!6000000003573-2-tps-456-368.png);
+}
+.store1 {
+  margin-top: 0.53vw;
+  margin-left: 4.4vw;
+  width: 26vw;
+  height: 24vw;
+}
