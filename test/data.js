@@ -6,7 +6,7 @@ module.exports = {
   "props": {
     "style": {
       "position": "relative",
-      "backgroundColor": "#fff"
+      "backgroundColor": "#ffffff"
     },
     "className": "mod"
   },
@@ -199,32 +199,24 @@ module.exports = {
       "children": [{
         "componentName": "Button",
         "props": {
-          "className": "class-2",
-          "text": false,
-          "htmlType": "submit",
-          "component": "span",
-          "type": "primary",
+          "className": "class-4",
           "style": {
             "width": 100,
+            "height": 28,
             "position": "absolute",
             "bottom": 12,
             "right": 12
           }
         },
-        "id": "47016012-0286-447c-8b1b-addb2ce7e390",
-        "children": "1234"
-      }, {
-        "componentName": "Button",
-        "props": {
-          "className": "class-3",
-          "style": {
-            "width": 100,
-            "position": "absolute",
-            "left": 12,
-            "bottom": 12
-          }
-        },
-        "id": "9ba1522a-2c0a-405e-a768-add1eaaba459"
+        "children": [{
+          "componentName": "Text",
+          "props": {
+            "className": "class-5",
+            "text": "按钮文本"
+          },
+          "id": "1d8ba417-4642-44ca-8bbd-add769af2124"
+        }],
+        "id": "564a9601-8ccb-4f36-802b-add04a47723c"
       }, {
         "id": "b6c8e075-ae1c-11ef-9677-b53471fd790b",
         "name": "description",
@@ -503,14 +495,14 @@ module.exports = {
       "cssUnit": "px",
       "dsl": "vue",
       "componentStyle": "hooks",
-      "cssStyle": "kebabCase",
+      "cssStyle": "snakeCase",
       "cssType": "css",
       "responseWidth": 750,
       "htmlFontSize": "16",
       "inlineStyle": "import",
-      "globalCss": true,
+      "globalCss": false,
       "jsx": "javascript",
-      "outputStyle": "project",
+      "outputStyle": "component",
       "dslName": "Vue"
     }
   },

@@ -311,10 +311,11 @@ export default function exportMod(schema, option): IPanelDisplay[] {
         }
         break;
       default:
+        const compName = `el-${type}`;
         if (json.children && json.children.length) {
-          xml = `<div${classString}${props}>${transform(json.children)}</div>`;
+          xml = `<${compName}${classString}${props}>${transform(json.children)}</${compName}>`;
         } else {
-          xml = `<div${classString}${props} />`;
+          xml = `<${compName}${classString}${props} ></${compName}>`;
         }
     }
 
