@@ -1,16 +1,16 @@
 <template>
-  <div class="flex-col page">
-    <div class="justify-center block">
+  <div class="page">
+    <div class="block">
       <img
         class="banner"
         :autoScaling="false"
         src="https://img.alicdn.com/imgextra/i1/O1CN010KWzEW1agT3VsEEFm_!!6000000003359-2-tps-1500-920.png"
       />
     </div>
-    <div class="flex-col hd">
-      <div class="justify-between normalDiv">
+    <div class="hd">
+      <div class="normalDiv">
         <span class="txt">2:41</span>
-        <div class="justify-center normalDiv1">
+        <div class="normalDiv1">
           <img
             class="mark"
             :autoScaling="false"
@@ -21,7 +21,7 @@
             :autoScaling="false"
             src="https://img.alicdn.com/imgextra/i4/O1CN017ZG4591Dzwjhnh2FZ_!!6000000000288-2-tps-62-46.png"
           />
-          <div class="justify-center block1"><div class="color" /></div>
+          <div class="block1"><div class="color" /></div>
           <img
             class="dot"
             :autoScaling="false"
@@ -29,8 +29,8 @@
           />
         </div>
       </div>
-      <div class="justify-center normalDiv2">
-        <div class="justify-center normalDiv3">
+      <div class="normalDiv2">
+        <div class="normalDiv3">
           <img
             class="icon"
             :autoScaling="false"
@@ -42,7 +42,7 @@
           :autoScaling="false"
           src="https://img.alicdn.com/imgextra/i3/O1CN01oRkMzQ1niNiGNq2Up_!!6000000005123-2-tps-288-84.png"
         />
-        <div class="justify-center normalDiv4">
+        <div class="normalDiv4">
           <img
             class="icon1"
             :autoScaling="false"
@@ -61,33 +61,33 @@
         </div>
       </div>
     </div>
-    <div class="flex-col bd">
-      <div class="items-center normalDiv5">
+    <div class="bd">
+      <div class="normalDiv5">
         <span class="word">推荐</span> <span class="text">有趣的店</span>
         <span class="txt1">小众品牌</span> <span class="word1">发现</span>
       </div>
       <div class="colorDiv" />
     </div>
-    <div class="flex-col main">
+    <div class="main">
       <div class="color1" />
       <img
         class="icon4"
         :autoScaling="false"
         src="https://img.alicdn.com/imgextra/i2/O1CN01DrsjTT21jD3AopcTN_!!6000000007020-2-tps-50-42.png"
       />
-      <div class="items-start normalDiv6">
-        <div class="justify-center normalDiv7">
+      <div class="normalDiv6">
+        <div class="normalDiv7">
           <img
             class="largeIcon"
             :autoScaling="false"
             src="https://img.alicdn.com/imgextra/i1/O1CN01UUEtxR1K3xuEYojNm_!!6000000001109-2-tps-136-110.png"
           />
         </div>
-        <div class="flex-col normalDiv8">
+        <div class="normalDiv8">
           <span class="shopTitle">快乐原创设计店</span>
-          <div class="items-start block2">
+          <div class="block2">
             <span class="count">9.2</span>
-            <div class="justify-center group">
+            <div class="group">
               <img
                 class="icon5"
                 :autoScaling="false"
@@ -102,12 +102,8 @@
           :autoScaling="false"
           src="https://img.alicdn.com/imgextra/i2/O1CN01lT1OwJ1LFhfoE5vsT_!!6000000001270-2-tps-96-48.png"
         />
-        <div class="items-center normalDiv9">
-          <span class="txtBenifit">跨店满减</span>
-        </div>
-        <div class="justify-center buttonWrap">
-          <span class="button">进店</span>
-        </div>
+        <div class="normalDiv9"><span class="txtBenifit">跨店满减</span></div>
+        <div class="buttonWrap"><span class="button">进店</span></div>
         <img
           class="icon6"
           :autoScaling="false"
@@ -124,25 +120,25 @@
         :autoScaling="false"
         src="https://img.alicdn.com/imgextra/i3/O1CN01GmuUxb1NwsEnj04Nz_!!6000000001635-2-tps-242-160.png"
       />
-      <div class="items-start normalDiv10">
+      <div class="normalDiv10">
         <span class="info">本月女装人气第</span> <span class="num">1</span>
         <span class="txt2">名</span> <span class="word3">上新快</span>
         <span class="text1">（8）</span>
       </div>
       <span class="txt3">（16）</span> <span class="word4">正品</span>
-      <div class="items-start normalDiv11"><div class="colorDiv1" /></div>
+      <div class="normalDiv11"><div class="colorDiv1" /></div>
       <span class="desc">官网正品秋冬蓝色长袖新…</span>
       <span class="desc1">官网正品袋鼠款黑色长袖…</span>
       <div class="color2" />
-      <div class="justify-center normalDiv12"><div class="colorDiv2" /></div>
-      <div class="justify-between moneyWrap">
+      <div class="normalDiv12"><div class="colorDiv2" /></div>
+      <div class="moneyWrap">
         <span class="moneyLabel">¥ 260</span> <span class="money">¥ 688</span>
       </div>
     </div>
-    <div class="items-center ft">
-      <div class="items-start normalDiv13">
-        <div class="justify-center block3">
-          <div class="flex-col block4">
+    <div class="ft">
+      <div class="normalDiv13">
+        <div class="block3">
+          <div class="block4">
             <img
               class="shop"
               :autoScaling="false"
@@ -153,17 +149,15 @@
               :autoScaling="false"
               src="https://img.alicdn.com/imgextra/i1/O1CN01Qcj78H284dGtYIYLl_!!6000000007879-2-tps-50-42.png"
             />
-            <div class="items-start block5">
-              <div class="justify-center container">
-                <div class="justify-center normalDiv14">
-                  <div class="color3" />
-                </div>
+            <div class="block5">
+              <div class="container">
+                <div class="normalDiv14"><div class="color3" /></div>
               </div>
-              <div class="flex-col block6">
+              <div class="block6">
                 <span class="shopTitle1">本相织物潮流服饰店</span>
-                <div class="items-end normalDiv15">
+                <div class="normalDiv15">
                   <span class="num1">9.2</span>
-                  <div class="justify-center normalDiv16">
+                  <div class="normalDiv16">
                     <img
                       class="largeIcon1"
                       :autoScaling="false"
@@ -175,7 +169,7 @@
                       src="https://img.alicdn.com/imgextra/i2/O1CN01f4WIcl23YnH74RgVK_!!6000000007268-2-tps-20-18.png"
                     />
                   </div>
-                  <div class="items-center normalDiv17">
+                  <div class="normalDiv17">
                     <span class="shopTitle2">5年老店</span>
                     <span class="txt4">12.7万粉丝</span>
                   </div>
@@ -186,16 +180,14 @@
                 :autoScaling="false"
                 src="https://img.alicdn.com/imgextra/i1/O1CN014c0H761dbptZMnczR_!!6000000003755-2-tps-46-48.png"
               />
-              <div class="justify-center buttonWrap1">
-                <span class="button1">进店</span>
-              </div>
+              <div class="buttonWrap1"><span class="button1">进店</span></div>
               <img
                 class="icon11"
                 :autoScaling="false"
                 src="https://img.alicdn.com/imgextra/i1/O1CN01IIqJf11y2fPaFmgHX_!!6000000006521-2-tps-36-20.png"
               />
             </div>
-            <div class="items-start txtBgWrap">
+            <div class="txtBgWrap">
               <img
                 class="txtBg"
                 :autoScaling="false"
@@ -206,9 +198,9 @@
               <span class="word5">（8）</span>
               <span class="text3">（16）</span> <span class="txt6">正品</span>
             </div>
-            <div class="justify-center block7"><div class="colorDiv3" /></div>
+            <div class="block7"><div class="colorDiv3" /></div>
           </div>
-          <div class="flex-col layerWrap">
+          <div class="layerWrap">
             <img
               class="layer"
               :autoScaling="false"
@@ -216,13 +208,13 @@
             />
             <div class="color4" />
             <span class="desc2">日系复古潮牌国潮流休闲…</span>
-            <div class="justify-between moneyWrap1">
+            <div class="moneyWrap1">
               <span class="moneyLabel1">¥ 260</span>
               <span class="money1">¥ 300</span>
             </div>
           </div>
           <span class="desc3">山本风宽松裙裤男可拆卸…</span>
-          <div class="items-center colorDiv4" />
+          <div class="colorDiv4" />
           <img
             class="shopLong"
             :autoScaling="false"
@@ -239,14 +231,12 @@
           :autoScaling="false"
           src="https://img.alicdn.com/imgextra/i4/O1CN01QAvMzA1hzt9xdXmCM_!!6000000004349-2-tps-1404-1156.png"
         />
-        <div class="items-start normalDiv18">
-          <div class="flex-col block8">
-            <div class="items-center block9">
-              <span class="text4">极简轻生活</span>
-            </div>
+        <div class="normalDiv18">
+          <div class="block8">
+            <div class="block9"><span class="text4">极简轻生活</span></div>
             <span class="title">早安，想和你喝一杯咖啡聊聊人生</span>
-            <div class="items-center group1">
-              <div class="justify-center container1">
+            <div class="group1">
+              <div class="container1">
                 <img
                   class="icon12"
                   :autoScaling="false"
@@ -257,24 +247,24 @@
             </div>
           </div>
         </div>
-        <div class="flex-col normalDiv19">
-          <div class="justify-center storeWrap">
+        <div class="normalDiv19">
+          <div class="storeWrap">
             <img
               class="store"
               :autoScaling="false"
               src="https://img.alicdn.com/imgextra/i2/O1CN01BP8i5b20Q8wsflfrF_!!6000000006843-2-tps-378-374.png"
             />
           </div>
-          <div class="items-center block10"><div class="color5" /></div>
+          <div class="block10"><div class="color5" /></div>
         </div>
       </div>
-      <div class="justify-center shopWrap">
+      <div class="shopWrap">
         <img
           class="shop1"
           :autoScaling="false"
           src="https://img.alicdn.com/imgextra/i4/O1CN01A74ZPC1ji92nAWw8z_!!6000000004581-2-tps-420-420.png"
         />
-        <div class="items-center storeWrap1">
+        <div class="storeWrap1">
           <img
             class="store1"
             :autoScaling="false"

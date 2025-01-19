@@ -75,9 +75,9 @@ const runCode = (data, dslConfig) => {
 
 co(function*() {
   const panelDisplay = runCode(data, {
-    cssUnit: "vw",
-    dsl: "rax",
-    globalCss: true,
+    cssUnit: "px",
+    // dsl: "rax",
+    globalCss: false,
     htmlFontSize: "16",
     responseHeight: 1334,
     responseWidth: 750,
