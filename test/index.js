@@ -6,7 +6,7 @@ const path = require('path');
 const { NodeVM } = require('vm2');
 const _ = require('lodash');
 const data = require('./data');
-const componentsMap = require('./componentsMap');
+const componentsMap = require('./componentsMap1');
 const helper = require('@imgcook/dsl-helper');
 
 const prettier = require('prettier/standalone');

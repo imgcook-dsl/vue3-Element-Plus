@@ -19,6 +19,9 @@ import exportCreateApp from './exportCreateApp';
 import exportGlobalCss from './exportGlobalCss';
 
 module.exports = function (schema, option) {
+  console.log('core')
+  console.log('schema', schema);
+  console.log('option', option);
   // get blocks json
   const blocks: any[] = [];
 
@@ -63,8 +66,6 @@ module.exports = function (schema, option) {
     });
     schema.componentName = 'Block'
   }
-
-  console.log('schema', schema)
 
   // clear schema
   initSchema(schema);
