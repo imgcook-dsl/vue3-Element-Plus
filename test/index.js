@@ -5,7 +5,7 @@ const thunkify = require('thunkify');
 const path = require('path');
 const { NodeVM } = require('vm2');
 const _ = require('lodash');
-const data = require('./data');
+const data = require('./data.js')
 const componentsMap = require('./componentsMap1');
 const helper = require('@imgcook/dsl-helper');
 
@@ -86,7 +86,7 @@ co(function*() {
 
   // console.log('panelDisplay', panelDisplay)
 
-  const baseDir = '../code';
+  const baseDir = '../code-view/src/components';
 
   // if (fs.existsSync(path.join(__dirname, baseDir))) {
   //   fs.rmdirSync(path.join(__dirname, baseDir), { recursive: true });
