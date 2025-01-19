@@ -33,6 +33,7 @@
     "demo": "node ./test/index.js",
     "test": "mocha  --colors test/**/*.test.js",
     "start": "node ./test/index.js",
+    "view": "cd code-view && npm run dev",
     "server": "node ./test/server.js",
     "test-with-coverage": "nyc --reporter=html mocha --exit  --colors test/**/*.test.js "
   }
