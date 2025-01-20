@@ -1,4 +1,4 @@
-import { IPanelDisplay, IImport } from './interface';
+import { IPanelDisplay, IImport } from "./interface";
 import {
   toString,
   existImport,
@@ -16,10 +16,15 @@ import {
   parseDataSource,
   isExpression,
   addAnimation,
-} from './utils';
+} from "./utils";
 
-import { CSS_TYPE, OUTPUT_TYPE, prettierVueOpt, prettierJsOpt, prettierCssOpt } from './consts';
-
+import {
+  CSS_TYPE,
+  OUTPUT_TYPE,
+  prettierVueOpt,
+  prettierJsOpt,
+  prettierCssOpt,
+} from "./consts";
 
 export default function exportMod(schema, option): IPanelDisplay[] {
   const {
@@ -34,13 +39,14 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     _,
   } = option;
 
-  const isExportGlobalFile = dslConfig.globalCss && schema.componentName == 'Page';
+  const isExportGlobalFile =
+    dslConfig.globalCss && schema.componentName == "Page";
 
   const fileName = schema.fileName;
   const { cssUnit } = dslConfig;
   const rootSchema = schema;
   // const folderName = `components/${schema.fileName}`;
-  const folderName = schema.fileName;
+  const folderName = ``;
 
   // template
   const template: string[] = [];
@@ -49,12 +55,12 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   const imports: IImport[] = [];
 
   // imports mods
-  const importMods: { _import: string, compName: string }[] = [];
+  const importMods: { _import: string; compName: string }[] = [];
 
   const importStyles: string[] = [];
 
   // import components
-  const components: string[] = []
+  const components: string[] = [];
 
   // Global Public Functions
   const utils: string[] = [];
@@ -78,14 +84,13 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   // inline style
   const style = {};
 
-
   const lifeCycleMap = {
-    _constructor: 'created',
-    getDerivedStateFromProps: 'beforeUpdate',
-    render: '',
-    componentDidMount: 'mounted',
-    componentDidUpdate: 'updated',
-    componentWillUnmount: 'beforeDestroy'
+    _constructor: "created",
+    getDerivedStateFromProps: "beforeUpdate",
+    render: "",
+    componentDidMount: "mounted",
+    componentDidUpdate: "updated",
+    componentWillUnmount: "beforeDestroy",
   };
 
   const width = option.responsive.width || 750;
@@ -101,21 +106,20 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   }
   importStyles.push(` <style src="./index.css" />`);
 
-
   const transformEventName = (name) => {
-    return name.replace('on', '').toLowerCase();
+    return name.replace("on", "").toLowerCase();
   };
 
   const toString = (value) => {
-    if ({}.toString.call(value) === '[object Function]') {
+    if ({}.toString.call(value) === "[object Function]") {
       return value.toString();
     }
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       return value;
     }
-    if (typeof value === 'object') {
+    if (typeof value === "object") {
       return JSON.stringify(value, (key, value) => {
-        if (typeof value === 'function') {
+        if (typeof value === "function") {
           return value.toString();
         } else {
           return value;
@@ -126,27 +130,30 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     return String(value);
   };
 
-
   // parse function, return params and content
   const parseFunction = (func) => {
     const funcString = func.toString();
-    const name = funcString.slice(funcString.indexOf('function'), funcString.indexOf('(')).replace('function ', '');
+    const name = funcString
+      .slice(funcString.indexOf("function"), funcString.indexOf("("))
+      .replace("function ", "");
     const params = funcString.match(/\([^\(\)]*\)/)[0].slice(1, -1);
-    const content = funcString.slice(funcString.indexOf('{') + 1, funcString.lastIndexOf('}'));
+    const content = funcString.slice(
+      funcString.indexOf("{") + 1,
+      funcString.lastIndexOf("}")
+    );
     return {
       params,
       content,
-      name
+      name,
     };
   };
 
   // parse layer props(static values or expression)
-  const parseProps = (value, isReactNode = false, constantName = '') => {
-
-    if (typeof value === 'string') {
+  const parseProps = (value, isReactNode = false, constantName = "") => {
+    if (typeof value === "string") {
       if (isExpression(value)) {
         if (isReactNode) {
-          return value
+          return value;
         } else {
           return value.slice(2, -2);
         }
@@ -156,16 +163,20 @@ export default function exportMod(schema, option): IPanelDisplay[] {
         return value;
       } else if (constantName) {
         // save to constant
-        expressionName[constantName] = expressionName[constantName] ? expressionName[constantName] + 1 : 1;
+        expressionName[constantName] = expressionName[constantName]
+          ? expressionName[constantName] + 1
+          : 1;
         const name = `${constantName}${expressionName[constantName]}`;
         constants[name] = value;
         return `"constants.${name}"`;
       } else {
         return `"${value}"`;
       }
-    } else if (typeof value === 'function') {
+    } else if (typeof value === "function") {
       const { params, content, name } = parseFunction(value);
-      expressionName[name] = expressionName[name] ? expressionName[name] + 1 : 1;
+      expressionName[name] = expressionName[name]
+        ? expressionName[name] + 1
+        : 1;
       methods.push(`${name}_${expressionName[name]}(${params}) {${content}}`);
       return `${name}_${expressionName[name]}`;
     } else {
@@ -174,44 +185,50 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   };
 
   const parsePropsKey = (key, value) => {
-    if (typeof value === 'function') {
+    if (typeof value === "function") {
       return `@${transformEventName(key)}`;
     } else {
       return `:${key}`;
     }
   };
 
-
   // parse condition: whether render the layer
   const parseCondition = (condition, render) => {
-
-    let _condition = isExpression(condition) ? condition.slice(2, -2) : condition;
-    if (typeof _condition === 'string') {
-      _condition = _condition.replace('this.', '').replace('state.', '');
-    }else if(typeof _condition === 'boolean'){
-      _condition = String(_condition)
+    let _condition = isExpression(condition)
+      ? condition.slice(2, -2)
+      : condition;
+    if (typeof _condition === "string") {
+      _condition = _condition.replace("this.", "").replace("state.", "");
+    } else if (typeof _condition === "boolean") {
+      _condition = String(_condition);
     }
 
     render = render.trim();
-    render = render.replace(/^<\w+\s/, `${render.match(/^<\w+\s/)[0]} v-if="${_condition}" `);
+    render = render.replace(
+      /^<\w+\s/,
+      `${render.match(/^<\w+\s/)[0]} v-if="${_condition}" `
+    );
     return render;
   };
 
   // parse loop render
   const parseLoop = (loop, loopArg, render) => {
     let data;
-    let loopArgItem = (loopArg && loopArg[0]) || 'item';
-    let loopArgIndex = (loopArg && loopArg[1]) || 'index';
+    let loopArgItem = (loopArg && loopArg[0]) || "item";
+    let loopArgIndex = (loopArg && loopArg[1]) || "index";
 
     if (Array.isArray(loop)) {
-      data = 'loopData';
+      data = "loopData";
       datas.push(`${data}: ${toString(loop)}`);
     } else if (isExpression(loop)) {
-      data = loop.slice(2, -2).replace('this.state.', '');
+      data = loop.slice(2, -2).replace("this.state.", "");
     }
     // add loop key
-    const tagEnd = render.indexOf('>');
-    const keyProp = render.slice(0, tagEnd).indexOf('key=') == -1 ? `:key="${loopArgIndex}"` : '';
+    const tagEnd = render.indexOf(">");
+    const keyProp =
+      render.slice(0, tagEnd).indexOf("key=") == -1
+        ? `:key="${loopArgIndex}"`
+        : "";
     render = `
       ${render.slice(0, tagEnd)}
       v-for="(${loopArgItem}, ${loopArgIndex}) in ${data}"  
@@ -219,7 +236,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
       ${render.slice(tagEnd)}`;
 
     // remove `this`
-    const re = new RegExp(`this.${loopArgItem}`, 'g');
+    const re = new RegExp(`this.${loopArgItem}`, "g");
     render = render.replace(re, loopArgItem);
 
     return render;
@@ -229,28 +246,32 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   const generateRender = (json, isReplace = false) => {
     const type = json.componentName.toLowerCase();
     const className = json.props && json.props.className;
-    let classString = json.classString || '';
-
+    let classString = json.classString || "";
 
     if (className) {
       style[className] = parseStyle(json.props.style);
     }
 
-
     let xml;
-    let props = '';
+    let props = "";
 
     Object.keys(json.props).forEach((key) => {
-      if (['className', 'style', 'text', 'src', 'lines', 'dealGradient'].indexOf(key) === -1) {
-        props += ` ${parsePropsKey(key, json.props[key])}=${parseProps(json.props[key])}`;
+      if (
+        ["className", "style", "text", "src", "lines", "dealGradient"].indexOf(
+          key
+        ) === -1
+      ) {
+        props += ` ${parsePropsKey(key, json.props[key])}=${parseProps(
+          json.props[key]
+        )}`;
       }
     });
     switch (type) {
-      case 'text':
+      case "text":
         const innerText = parseProps(json.props.text, true);
         xml = `<span${classString}${props}>${innerText}</span> `;
         break;
-      case 'image':
+      case "image":
         let source = parseProps(json.props.src, false);
         if (!source.match('"')) {
           source = `"${source}"`;
@@ -260,36 +281,37 @@ export default function exportMod(schema, option): IPanelDisplay[] {
         }
         break;
 
-      case 'page':
-      case 'block':
-      case 'component':
+      case "page":
+      case "block":
+      case "component":
         if (isReplace) {
           const compName = json.fileName;
           xml = `<${compName} />`;
           // 当前是 Page 模块
-          const compPath = rootSchema.componentName == 'Page' ? './components' : '..';
+          const compPath =
+            rootSchema.componentName == "Page" ? "./components" : "..";
           importMods.push({
             _import: `import ${compName} from '${compPath}/${compName}';`,
-            compName: compName
+            compName: compName,
           });
-          delete style[className]
+          delete style[className];
         } else if (json.children && json.children.length) {
           xml = `<div ${classString} ${props}>${json.children
             .map((node) => {
               return generateRender(node, true);
             })
-            .join('')}</div>`;
+            .join("")}</div>`;
         } else {
           xml = `<div ${classString} ${props} />`;
         }
         break;
-      case 'div':
+      case "div":
         if (json.children && json.children.length) {
           xml = `<div ${classString} ${props}>${json.children
             .map((node) => {
               return generateRender(node, true);
             })
-            .join('')}</div>`;
+            .join("")}</div>`;
         } else {
           xml = `<div ${classString} ${props} />`;
         }
@@ -297,7 +319,9 @@ export default function exportMod(schema, option): IPanelDisplay[] {
       default:
         const compName = `el-${type}`;
         if (json.children && json.children.length) {
-          xml = `<${compName}${classString}${props}>${transform(json.children)}</${compName}>`;
+          xml = `<${compName}${classString}${props}>${transform(
+            json.children
+          )}</${compName}>`;
         } else {
           xml = `<${compName}${classString}${props} ></${compName}>`;
         }
@@ -306,19 +330,19 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     if (json.loop) {
       xml = parseLoop(json.loop, json.loopArgs, xml);
     }
-    if (json.condition && type !== 'image') {
+    if (json.condition && type !== "image") {
       xml = parseCondition(json.condition, xml);
     }
-    return xml || '';
+    return xml || "";
   };
 
   // parse schema
   const transform = (schema, flag = false) => {
-    if(typeof schema == 'string'){
-      return schema
+    if (typeof schema == "string") {
+      return schema;
     }
-    let result = '';
-    if (flag && schema.componentName === 'Page') {
+    let result = "";
+    if (flag && schema.componentName === "Page") {
       isPage = true;
     }
     if (Array.isArray(schema)) {
@@ -327,11 +351,11 @@ export default function exportMod(schema, option): IPanelDisplay[] {
       });
     } else {
       let type = schema.componentName.toLowerCase();
-      if (isPage && type === 'block') {
-        type = 'div';
+      if (isPage && type === "block") {
+        type = "div";
       }
 
-      if (['page', 'block', 'component'].indexOf(type) !== -1) {
+      if (["page", "block", "component"].indexOf(type) !== -1) {
         // 容器组件处理: state/method/dataSource/lifeCycle/render
         const init: string[] = [];
 
@@ -348,33 +372,41 @@ export default function exportMod(schema, option): IPanelDisplay[] {
 
         if (schema.dataSource && Array.isArray(schema.dataSource.list)) {
           schema.dataSource.list.forEach((item) => {
-            if (typeof item.isInit === 'boolean' && item.isInit) {
+            if (typeof item.isInit === "boolean" && item.isInit) {
               init.push(`this.${item.id}();`);
-            } else if (typeof item.isInit === 'string') {
-              init.push(`if (${parseProps(item.isInit)}) { this.${item.id}(); }`);
+            } else if (typeof item.isInit === "string") {
+              init.push(
+                `if (${parseProps(item.isInit)}) { this.${item.id}(); }`
+              );
             }
             const parseDataSourceData = parseDataSource(item, imports);
             methods.push(parseDataSourceData.value);
           });
 
           if (schema.dataSource.dataHandler) {
-            const { params, content } = parseFunction(schema.dataSource.dataHandler);
+            const { params, content } = parseFunction(
+              schema.dataSource.dataHandler
+            );
             methods.push(`dataHandler(${params}) {${content}}`);
             init.push(`this.dataHandler()`);
           }
         }
 
         if (schema.lifeCycles) {
-          if (!schema.lifeCycles['_constructor']) {
-            lifeCycles.push(`${lifeCycleMap['_constructor']}() { ${init.join('\n')}}`);
+          if (!schema.lifeCycles["_constructor"]) {
+            lifeCycles.push(
+              `${lifeCycleMap["_constructor"]}() { ${init.join("\n")}}`
+            );
           }
 
           Object.keys(schema.lifeCycles).forEach((name) => {
             const vueLifeCircleName = lifeCycleMap[name] || name;
             const { params, content } = parseFunction(schema.lifeCycles[name]);
 
-            if (name === '_constructor') {
-              lifeCycles.push(`${vueLifeCircleName}() {${content} ${init.join('\n')}}`);
+            if (name === "_constructor") {
+              lifeCycles.push(
+                `${vueLifeCircleName}() {${content} ${init.join("\n")}}`
+              );
             } else {
               lifeCycles.push(`${vueLifeCircleName}() {${content}}`);
             }
@@ -397,7 +429,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   // start parse schema
   transform(schema, true);
   datas.push(`constants: ${toString(constants)}`);
-  datas = datas.filter(i=>i!=='');
+  datas = datas.filter((i) => i !== "");
 
   let indexValue = `
   <template>
@@ -405,30 +437,30 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   </template>
 
   <script>
-  ${imports.map((i) => i._import).join('\n')}
-  ${importMods.map((i) => i._import).join('\n')}
+  ${imports.map((i) => i._import).join("\n")}
+  ${importMods.map((i) => i._import).join("\n")}
 
     export default {
       components: {
-        ${importMods.map((i) => i.compName).join(',\n')}
+        ${importMods.map((i) => i.compName).join(",\n")}
       },
       data() {
         return {
-          ${datas.join(',\n')}
+          ${datas.join(",\n")}
         } 
       },
       methods: {
-        ${methods.join(',\n')}
+        ${methods.join(",\n")}
       },
-      ${lifeCycles.join(',\n')}
+      ${lifeCycles.join(",\n")}
     }
   </script>
   
-  ${importStyles.join('\n')}
+  ${importStyles.join("\n")}
 `;
 
   const prefix = dslConfig.inlineStyle
-    ? ''
+    ? ""
     : schema.props && schema.props.className;
 
   // 获取当前 节点 所有 动画参数
@@ -438,7 +470,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     {
       panelName: `index.vue`,
       panelValue: prettier.format(indexValue, prettierVueOpt),
-      panelType: 'vue',
+      panelType: "vue",
       folder: folderName,
       panelImports: imports,
     },
@@ -450,16 +482,14 @@ export default function exportMod(schema, option): IPanelDisplay[] {
       `${generateCSS(style, prefix)} ${animationKeyframes}`,
       prettierCssOpt
     ),
-    panelType: 'css',
+    panelType: "css",
     folder: folderName,
   });
 
-
-  return panelDisplay.map(item=>{
-    if( dslConfig.outputStyle == OUTPUT_TYPE.PROJECT ){
-      item.folder = 'src/' + item.folder;
-    }
-    return item
+  return panelDisplay.map((item) => {
+    // if (dslConfig.outputStyle == OUTPUT_TYPE.PROJECT) {
+    //   item.folder = "src/" + item.folder;
+    // }
+    return item;
   });
 }
-

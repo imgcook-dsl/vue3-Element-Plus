@@ -47,17 +47,17 @@ module.exports = function (schema, option) {
 
 
   // 仅组件时，只导出一个组件
-  if( isExportProject ){
-    // 项目模式，兼容没有Page根节点情况
-    if(schema.componentName === 'Block'){
-      schema = {
-        componentName: 'Page',
-        className: '',
-        props: { style: {}},
-        children: [schema]
-      }
-    }
-  }else{
+  // if( isExportProject ){
+  //   // 项目模式，兼容没有Page根节点情况
+  //   if(schema.componentName === 'Block'){
+  //     schema = {
+  //       componentName: 'Page',
+  //       className: '',
+  //       props: { style: {}},
+  //       children: [schema]
+  //     }
+  //   }
+  // }else{
     // 组件模式，去除Page
     traverse(schema, (json) => {
       if(json.componentName == 'Block'){
@@ -65,7 +65,7 @@ module.exports = function (schema, option) {
       }
     });
     schema.componentName = 'Block'
-  }
+  // }
 
   // clear schema
   initSchema(schema);
