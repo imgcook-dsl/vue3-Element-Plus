@@ -15,21 +15,16 @@ module.exports = function (schema, option) {
   console.log("core");
   console.log("schema", schema);
   console.log("option", option);
-  // get blocks json
-  const blocks: any[] = [];
 
   // 参数设置
   option.scale = 750 / ((option.responsive && option.responsive.width) || 750);
   option.componentsMap = transComponentsMap(option.componentsMap);
-  option.blockInPage = schema.componentName === "Page";
-  option.pageGlobalCss = schema.css || "";
 
   const dslConfig = Object.assign(
     {},
     option._.get(schema, "imgcook.dslConfig")
   );
 
-  dslConfig.useTypescript = dslConfig.jsx === "typescript";
   option.dslConfig = dslConfig;
 
   // 初始化全局参数
@@ -42,10 +37,11 @@ module.exports = function (schema, option) {
   });
   schema.componentName = "Block";
 
-  // clear schema
+  // 预处理
   initSchema(schema);
 
   // 记录所有blocks
+  const blocks: any[] = [];
   traverse(schema, (json) => {
     switch ((json.componentName || "").toLowerCase()) {
       case "block":
@@ -70,34 +66,10 @@ module.exports = function (schema, option) {
   // 提取全局样式，类名数组存于 json.classString , 剩余样式覆盖 style
   traverse(schema, (json) => {
     let className = json.props && json.props.className;
-    let classString = "";
-    let style = json.props.style;
     if (!className) {
       return;
     }
-
-    // inline
-    let classnames: string[] = [];
-    let enableGlobalCss = dslConfig.globalCss && schema.css;
-
-    // 计算全局样式类名
-    if (enableGlobalCss) {
-      const cssResults = getGlobalClassNames(style, schema.css);
-      if (cssResults.names.length > 0) {
-        classnames = cssResults.names;
-      }
-      style = cssResults.style;
-    }
-
-    if (className) {
-      classnames.push(className);
-    }
-    if (classnames.length > 0) {
-      classString = ` class="${classnames.join(" ")}"`;
-    }
-
-    json.props.style = style;
-    json.classString = classString;
+    json.classString = ` class="${className}"`;
   });
 
   option.blocksCount = blocks.length;

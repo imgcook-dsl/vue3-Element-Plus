@@ -44,7 +44,7 @@ const panelDisplay = runCode(data, {
   dslName: "vue",
   cssUnit: "px",
   cssStyle: 'snakeCase',
-  globalCss: true,
+  globalCss: false,
   htmlFontSize: "16",
   responseHeight: 1334,
   responseWidth: 750,
@@ -61,7 +61,7 @@ const baseDir = "../code-view/src/components";
 //   console.log('删除文件夹')
 // }
 mkDirsSync(path.join(__dirname, baseDir));
-console.log("创建文件夹", path.join(__dirname, baseDir));
+// console.log("创建文件夹", path.join(__dirname, baseDir));
 
 panelDisplay.forEach((file) => {
   if (file.folder) {

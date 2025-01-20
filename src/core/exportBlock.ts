@@ -33,10 +33,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     scale,
     componentsMap,
     folder,
-    blocksCount,
-    blockInPage,
     dslConfig = {},
-    pageGlobalCss,
     _,
   } = option;
 
