@@ -32,6 +32,7 @@
     "view": "cd code-view && npm run dev",
     "start": "npm run test && npm run view",
     "debug": "npx webpack --config webpack.config.js --mode=development",
-    "build": "npx webpack --config webpack.config.js --mode=production"
+    "build": "npx webpack --config webpack.config.js --mode=production",
+    "bt": "npm run build && npm run test"
   }
 }

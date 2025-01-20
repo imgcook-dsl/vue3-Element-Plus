@@ -1,6 +1,15 @@
+<script setup>
+import { reactive } from 'vue';
+
+const state = reactive({
+  loopData: [{}, {}],
+  constants: {},
+});
+</script>
+
 <template>
   <div class="mod">
-    <div class="class_1" v-for="(item, index) in loopData" :key="index">
+    <div class="class_1" v-for="(item, index) in state.loopData" :key="index">
       <div class="body">
         <img
           class="item"
@@ -32,18 +41,5 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  components: {},
-  data() {
-    return {
-      loopData: [{}, {}],
-      constants: {},
-    };
-  },
-  methods: {},
-};
-</script>
 
 <style src="./index.css" />

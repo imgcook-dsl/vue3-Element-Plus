@@ -25,6 +25,7 @@ import {
   prettierJsOpt,
   prettierCssOpt,
 } from "./consts";
+import genVue from "./genVue";
 
 export default function exportMod(schema, option): IPanelDisplay[] {
   const {
@@ -231,7 +232,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
         : "";
     render = `
       ${render.slice(0, tagEnd)}
-      v-for="(${loopArgItem}, ${loopArgIndex}) in ${data}"  
+      v-for="(${loopArgItem}, ${loopArgIndex}) in state.${data}"  
       ${keyProp}
       ${render.slice(tagEnd)}`;
 
@@ -431,33 +432,15 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   datas.push(`constants: ${toString(constants)}`);
   datas = datas.filter((i) => i !== "");
 
-  let indexValue = `
-  <template>
-      ${template}
-  </template>
-
-  <script>
-  ${imports.map((i) => i._import).join("\n")}
-  ${importMods.map((i) => i._import).join("\n")}
-
-    export default {
-      components: {
-        ${importMods.map((i) => i.compName).join(",\n")}
-      },
-      data() {
-        return {
-          ${datas.join(",\n")}
-        } 
-      },
-      methods: {
-        ${methods.join(",\n")}
-      },
-      ${lifeCycles.join(",\n")}
-    }
-  </script>
-  
-  ${importStyles.join("\n")}
-`;
+  const indexValue = genVue({
+    template,
+    imports,
+    importMods,
+    datas,
+    methods,
+    lifeCycles,
+    importStyles,
+  })
 
   const prefix = dslConfig.inlineStyle
     ? ""
