@@ -24,7 +24,7 @@ const runCode = (data, dslConfig) => {
   );
 
   const options = {
-    prettier,
+    prettier: { format: prettier.format },
     _: _,
     responsive: {
       width: 750,
@@ -44,7 +44,7 @@ const panelDisplay = runCode(data, {
   dslName: "vue",
   cssUnit: "px",
   cssStyle: 'snakeCase',
-  globalCss: false,
+  globalCss: true,
   htmlFontSize: "16",
   responseHeight: 1334,
   responseWidth: 750,

@@ -1,6 +1,5 @@
-import { IPanelDisplay, IDslConfig } from "./interface";
+import { IPanelDisplay } from "./interface";
 import {
-  line2Hump,
   transComponentsMap,
   initSchema,
   traverse,
@@ -8,17 +7,9 @@ import {
   getGlobalClassNames,
   simpleStyle,
 } from "./utils";
-const camelCase = require("lodash/camelCase");
-import {
-  CSS_TYPE,
-  COMPONENT_TYPE,
-  OUTPUT_TYPE,
-  DSL_CONFIG,
-  initConfig,
-} from "./consts";
+import { initConfig } from "./consts";
 
 import exportBlock from "./exportBlock";
-import exportGlobalCss from "./exportGlobalCss";
 
 module.exports = function (schema, option) {
   console.log("core");
@@ -124,9 +115,6 @@ module.exports = function (schema, option) {
     const result = exportBlock(schema, option);
     panelDisplay = panelDisplay.concat(result);
   }
-
-  // 全局样式
-  panelDisplay = panelDisplay.concat(exportGlobalCss(schema, option));
 
   return {
     panelDisplay,
