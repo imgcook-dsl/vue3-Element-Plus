@@ -469,10 +469,5 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     folder: folderName,
   });
 
-  return panelDisplay.map((item) => {
-    // if (dslConfig.outputStyle == OUTPUT_TYPE.PROJECT) {
-    //   item.folder = "src/" + item.folder;
-    // }
-    return item;
-  });
+  return panelDisplay
 }
