@@ -146,20 +146,20 @@ module.exports = function (schema, option) {
   }
 
 
-  if (dslConfig.outputStyle == OUTPUT_TYPE.PROJECT) {
-    // 依赖 package.json
-    const dependencies = {};
-    for (let item of panelDisplay) {
-      if (item.panelImports && item.panelImports.length > 0) {
-        for (let pack of item.panelImports) {
-          dependencies[pack.package] = pack.version || '*'
-        }
-      }
-    }
+  // if (dslConfig.outputStyle == OUTPUT_TYPE.PROJECT) {
+  //   // 依赖 package.json
+  //   const dependencies = {};
+  //   for (let item of panelDisplay) {
+  //     if (item.panelImports && item.panelImports.length > 0) {
+  //       for (let pack of item.panelImports) {
+  //         dependencies[pack.package] = pack.version || '*'
+  //       }
+  //     }
+  //   }
 
-    // 项目文件
-    panelDisplay = panelDisplay.concat(exportCreateApp(schema, { ...option, dependencies }));
-  }
+  //   // 项目文件
+  //   panelDisplay = panelDisplay.concat(exportCreateApp(schema, { ...option, dependencies }));
+  // }
 
 
 

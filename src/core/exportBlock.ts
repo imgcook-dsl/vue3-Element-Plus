@@ -39,24 +39,8 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   const fileName = schema.fileName;
   const { cssUnit } = dslConfig;
   const rootSchema = schema;
-
-  let folderName;
-  let filePathName = 'index';
-  if (schema.componentName == 'Page') {
-    // schema.fileName = 'App';
-    folderName = ''; //('pages/' + schema.fileName);
-    filePathName = 'App';
-    schema.fileName = 'App';
-    // filePathName = schema.fileName
-  } else {
-    folderName = dslConfig.outputStyle !== OUTPUT_TYPE.PROJECT ? '' : ('components/' + schema.fileName);
-  }
-
-
-  schema.folderName = folderName;
-
-  const cssFileName = `${filePathName}.css`
-
+  // const folderName = `components/${schema.fileName}`;
+  const folderName = schema.fileName;
 
   // template
   const template: string[] = [];
@@ -115,7 +99,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   if (isExportGlobalFile) {
     importStyles.push(` <style src="./global.css" />`);
   }
-  importStyles.push(` <style src="./${cssFileName}" />`);
+  importStyles.push(` <style src="./index.css" />`);
 
 
   const transformEventName = (name) => {
@@ -452,7 +436,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
 
   const panelDisplay: IPanelDisplay[] = [
     {
-      panelName: `${filePathName}.vue`,
+      panelName: `index.vue`,
       panelValue: prettier.format(indexValue, prettierVueOpt),
       panelType: 'vue',
       folder: folderName,
@@ -461,7 +445,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   ];
 
   panelDisplay.push({
-    panelName: cssFileName,
+    panelName: `index.css`,
     panelValue: prettier.format(
       `${generateCSS(style, prefix)} ${animationKeyframes}`,
       prettierCssOpt

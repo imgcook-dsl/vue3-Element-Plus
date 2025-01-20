@@ -1,200 +1,137 @@
-import { IPanelDisplay } from './interface';
+import { IPanelDisplay } from "./interface";
 
-import { prettierJsOpt, prettierMarkDownOpt, prettierJsonOpt, prettierHtmlOpt } from './consts';
-
+import {
+  prettierJsOpt,
+  prettierMarkDownOpt,
+  prettierJsonOpt,
+  prettierHtmlOpt,
+} from "./consts";
 
 export default function exportCreateApp(schema, option): IPanelDisplay[] {
   const fileName = schema.fileName;
-  const folderName = schema.componentName == 'Page' ? './': './components/';
-  const {
-    dependencies,
-    dslConfig,
-    _,
-    prettier
-  } = option;
+  const folderName = schema.componentName == "Page" ? "./" : "./components/";
+  const { dependencies, dslConfig, _, prettier } = option;
 
-  let panelValue = '';
+  let panelValue = "";
   const panelDisplay: IPanelDisplay[] = [];
 
-  panelValue = `<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
-</html>
-`
+  panelValue = `
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vite + Vue</title>
+      </head>
+      <body>
+        <div id="app"></div>
+        <script type="module" src="/src/main.js"></script>
+      </body>
+    </html>
+  `;
   panelDisplay.push({
     panelName: `index.html`,
-    panelType: 'html',
+    panelType: "html",
     panelValue,
-    folder: '/public',
+    folder: "",
   });
 
-  // index.js
+  // main.js
   panelValue = `
-  import { createApp } from 'vue'
-  import App from '${folderName}${fileName}'
-  
-  createApp(App).mount('#app')
-  `
+    import { createApp } from 'vue'
+    import './style.css'
+    import App from './App.vue'
+    import ElementPlus from 'element-plus'
+    import 'element-plus/dist/index.css'
+
+    const app = createApp(App)
+    app.use(ElementPlus)
+    app.mount('#app')
+  `;
   panelDisplay.push({
     panelName: `main.js`,
-    panelType: 'js',
-    panelValue:  prettier.format(panelValue, prettierJsOpt),
-    folder: '/src',
+    panelType: "js",
+    panelValue: prettier.format(panelValue, prettierJsOpt),
+    folder: "/src",
   });
-
-  // index.css
-  // panelValue = `$vue-blue: #32485F;
-  // $vue-green: #00C185;`
-  // panelDisplay.push({
-  //   panelName: `variable.scss`,
-  //   panelType: 'css',
-  //   panelValue:  prettier.format(panelValue, prettierCssOpt),
-  //   folder: option.folder || '',
-  // });
-
-
-
-  // dependencies
-  let packDependencies = dependencies;
-
 
   // package.json
-  const packageJson = {
-    "title": "imgcook vue",
-    "version": "0.0.1",
-    "scripts": {
-      "serve": "vue-cli-service serve",
-      "build": "vue-cli-service build"
-    },
-    "dependencies": {
-      "core-js": "^3.6.5",
-      "vue": "^3.0.0",
-      ...packDependencies
-    },
-    "devDependencies": {
-      "@vue/cli-plugin-babel": "~4.5.15",
-      "@vue/cli-plugin-eslint": "~4.5.15",
-      "@vue/cli-service": "~4.5.15",
-      "@vue/compiler-sfc": "^3.0.0",
-      "babel-eslint": "^10.1.0",
-      "eslint": "^6.7.2",
-      "eslint-plugin-vue": "^7.0.0"
-    },
-    "eslintConfig": {
-      "root": true,
-      "env": {
-        "node": true
+  let packDependencies = dependencies;
+  panelValue = `
+    {
+      "name": "vue3-element-plus",
+      "private": true,
+      "version": "0.0.0",
+      "type": "module",
+      "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
       },
-      "extends": ["plugin:vue/vue3-essential", "eslint:recommended"],
-      "parserOptions": {
-        "parser": "babel-eslint"
+      "dependencies": {
+        "element-plus": "^2.9.3",
+        "vue": "^3.5.13"
       },
-      "rules": {}
+      "devDependencies": {
+        "@vitejs/plugin-vue": "^5.2.1",
+        "vite": "^6.0.5"
+      }
     }
-  }
-  panelValue = JSON.stringify(packageJson, null, 4)
+  `;
   panelDisplay.push({
     panelName: `package.json`,
-    panelType: 'json',
-    panelValue:  prettier.format(panelValue, prettierJsonOpt),
-    folder: '',
+    panelType: "json",
+    panelValue: prettier.format(panelValue, prettierJsonOpt),
+    folder: "",
   });
 
-
-  if (dslConfig.useTypescript) {
-    panelValue = `{
+  // jsconfig.json/tsconfig.json
+  panelValue = `
+    {
       "compilerOptions": {
-        "target": "es5",
-        "lib": [
-          "dom",
-          "dom.iterable",
-          "esnext"
-        ],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "noFallthroughCasesInSwitch": true,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "react-jsx"
+        "paths": {
+          "@/*": ["./src/*"]
+        }
       },
-      "include": [
-        "src"
-      ]
+      "include": ["src"],
+      "exclude": ["node_modules", "dist"]
     }
-     `
-    panelDisplay.push({
-      panelName: `tsconfig.json`,
-      panelType: 'json',
-      panelValue:  prettier.format(panelValue, prettierJsonOpt),
-      folder:  '',
-    });
-  }
+  `;
+  panelDisplay.push({
+    panelName: dslConfig.useTypescript ? `tsconfig.json` : `jsconfig.json`,
+    panelType: "json",
+    panelValue: prettier.format(panelValue, prettierJsonOpt),
+    folder: "",
+  });
 
-  const readme = `# vue3-demo
-## Project setup
-\`\`\`
-npm install
-  \`\`\`
-
-### Compiles and hot-reloads for development
-  \`\`\`
-npm run serve
-  \`\`\`
-
-### Compiles and minifies for production
-  \`\`\`
-npm run build
-  \`\`\`
-
-### Lints and fixes files
-  \`\`\`
-npm run lint
-  \`\`\`
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-`
-
+  // README.md
+  panelValue = `
+    # 项目说明
+  `;
   panelDisplay.push({
     panelName: `README.md`,
-    panelType: 'md',
-    panelValue:  prettier.format(readme, prettierMarkDownOpt),
-    folder: '',
+    panelType: "md",
+    panelValue: prettier.format(panelValue, prettierMarkDownOpt),
+    folder: "",
   });
 
+  // vite.config.js
+  panelValue = `
+    import { defineConfig } from 'vite'
+    import vue from '@vitejs/plugin-vue'
 
+    // https://vite.dev/config/
+    export default defineConfig({
+      plugins: [vue()],
+    })
+  `
   panelDisplay.push({
-    panelName: `babel.config.js`,
-    panelType: 'js',
-    panelValue:  prettier.format(`module.exports = {
-      presets: [
-        '@vue/cli-plugin-babel/preset'
-      ]
-    }`, prettierJsOpt),
-    folder: '',
+    panelName: `vite.config.js`,
+    panelType: "js",
+    panelValue: prettier.format(panelValue, prettierJsOpt),
+    folder: "",
   });
-
-  
 
   return panelDisplay;
 }
