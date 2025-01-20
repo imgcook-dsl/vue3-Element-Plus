@@ -40,14 +40,16 @@ const runCode = (data, dslConfig) => {
 };
 
 const panelDisplay = runCode(data, {
-  cssUnit: "px",
   dsl: "vue",
+  dslName: "vue",
+  cssUnit: "px",
   cssStyle: 'snakeCase',
   globalCss: false,
   htmlFontSize: "16",
   responseHeight: 1334,
   responseWidth: 750,
   outputStyle: "component",
+  componentStyle:  "hooks",
 });
 
 // console.log('panelDisplay', panelDisplay)
@@ -60,8 +62,6 @@ const baseDir = "../code-view/src/components";
 // }
 mkDirsSync(path.join(__dirname, baseDir));
 console.log("创建文件夹", path.join(__dirname, baseDir));
-// const baseDir = '../code';
-// 生成到目标目录运行
 
 panelDisplay.forEach((file) => {
   if (file.folder) {
