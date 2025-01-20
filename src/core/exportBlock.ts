@@ -115,7 +115,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   if (isExportGlobalFile) {
     importStyles.push(` <style src="./global.css" />`);
   }
-  importStyles.push(` <style src="./${cssFileName}" />;`);
+  importStyles.push(` <style src="./${cssFileName}" />`);
 
 
   const transformEventName = (name) => {
@@ -419,6 +419,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   <template>
       ${template}
   </template>
+
   <script>
   ${imports.map((i) => i._import).join('\n')}
   ${importMods.map((i) => i._import).join('\n')}

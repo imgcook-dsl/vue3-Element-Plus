@@ -9,24 +9,9 @@ const data = require('./data.js')
 const componentsMap = require('./componentsMap1');
 const helper = require('@imgcook/dsl-helper');
 
-const prettier = require('prettier/standalone');
-
-const parserHtml =require('prettier/parser-html');
-const parserBabel= require('prettier/parser-babel');
-const parserCss =require('prettier/parser-postcss');
-const parserMarkDown=require('prettier/parser-markdown');
+const prettier = require('prettier');
 
 const entry = require('../src/index')
-const browerParser = {
-  babel: parserBabel,
-  json: parserBabel,
-  vue: parserHtml,
-  css: parserCss,
-  scss: parserCss,
-  less: parserCss,
-  html: parserHtml,
-  md: parserMarkDown
-}
 
 const vm = new NodeVM({
   console: 'inherit',
@@ -45,13 +30,15 @@ const runCode = (data, dslConfig) => {
   const options =  {
     prettier: {
       format: (str, opt) => {
-        if (opt && browerParser[opt.parser]) {
-          opt.plugins = [browerParser[opt.parser]]
-        } else {
-          return str
-        }
+        // if (opt && browerParser[opt.parser]) {
+        //   opt.plugins = [browerParser[opt.parser]]
+        // } else {
+        //   return str
+        // }
+        const aa = prettier.format(str, opt)
+        console.log('aa', aa)
         try{
-          return prettier.format(str, opt)
+          return aa
         }catch(e){
           console.error('format error', e)
           return str
