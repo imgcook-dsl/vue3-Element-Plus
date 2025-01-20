@@ -89,31 +89,20 @@ export const isEmptyObj = (o) => {
   return false;
 };
 
-interface IComp { list?: { name: string; packageName: string; dependenceVersion: string; dependence: string }[] };
-export const transComponentsMap = (compsMap: IComp = {}) => {
+export const transComponentsMap = (compsMap) => {
   if (!compsMap || !Array.isArray(compsMap.list)) {
     return [];
   }
-  const list = compsMap.list;
-  return list.reduce((obj, comp) => {
-    const componentName = comp.name;
-    if (!obj[componentName]) {
-      try {
-        let dependence = JSON.parse(comp.dependence);
-        if (dependence) {
-          comp.packageName = dependence.package;
-        }
-        if (!comp.dependenceVersion) {
-          comp.dependenceVersion = '*';
-        }
-        if (/^\d/.test(comp.dependenceVersion)) {
-          comp.dependenceVersion = '^' + comp.dependenceVersion;
-        }
-      } catch (e) { }
-      obj[componentName] = comp;
-    }
-    return obj;
-  }, {});
+  if (Array.isArray(compsMap.list)) {
+    return compsMap.list.reduce((obj, comp) => {
+      const componentName = comp.name;
+      if (!obj[componentName]) {
+        obj[componentName] = comp;
+      }
+      return obj;
+    }, {});
+  }
+  return compsMap;
 };
 
 export const toString = (value) => {

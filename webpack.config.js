@@ -2,7 +2,6 @@ const path = require('path');
 
 module.exports = {
   // watch: true,
-  // entry: './src/entry.js',
   entry: './src/core/entry.ts',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

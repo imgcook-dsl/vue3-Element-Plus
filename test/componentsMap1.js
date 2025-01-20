@@ -1,4 +1,4 @@
-const compMap = {
+module.exports = {
   Div: {
     name: "Div",
     title: "层标签",
@@ -194,7 +194,3 @@ const compMap = {
     libraryId: 978,
   },
 };
-
-module.exports = {
-  list: Object.keys(compMap).map(v => compMap[v])
-}
