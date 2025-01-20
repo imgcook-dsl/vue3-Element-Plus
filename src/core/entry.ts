@@ -4,7 +4,6 @@ import {
   initSchema,
   traverse,
   genStyleClass,
-  getGlobalClassNames,
   simpleStyle,
 } from "./utils";
 import { initConfig } from "./consts";
@@ -63,7 +62,7 @@ module.exports = function (schema, option) {
   // 精简默认样式
   simpleStyle(schema);
 
-  // 提取全局样式，类名数组存于 json.classString , 剩余样式覆盖 style
+  // json.classString
   traverse(schema, (json) => {
     let className = json.props && json.props.className;
     if (!className) {
@@ -72,16 +71,13 @@ module.exports = function (schema, option) {
     json.classString = ` class="${className}"`;
   });
 
-  option.blocksCount = blocks.length;
-
   // export module code
   let panelDisplay: IPanelDisplay[] = [];
 
-  blocks.length > 0 &&
-    blocks.forEach((block) => {
-      const result = exportBlock(block, option);
-      panelDisplay = panelDisplay.concat(result);
-    });
+  blocks.forEach((block) => {
+    const result = exportBlock(block, option);
+    panelDisplay = panelDisplay.concat(result);
+  });
   // export Page code
   if (schema.componentName === "Page") {
     const result = exportBlock(schema, option);

@@ -3,26 +3,26 @@
   background-color: #ffffff;
   font-family: PingFang SC;
 }
-.class_1 {
+.mod .class_1 {
   display: flex;
   width: 100%;
   height: 324px;
   position: relative;
 }
-.body {
+.mod .body {
   display: flex;
   justify-content: flex-start;
   width: 342px;
   height: 100%;
   position: relative;
 }
-.item {
+.mod .item {
   width: 342px;
   height: 324px;
   align-self: flex-start;
   border-radius: 12px;
 }
-.tag_wrapper {
+.mod .tag_wrapper {
   display: flex;
   justify-content: flex-start;
   padding: 5px 10px;
@@ -32,14 +32,14 @@
   background-color: #ffb902;
   border-radius: 6px;
 }
-.tag {
+.mod .tag {
   color: rgba(255, 255, 255, 1);
   font-size: 20px;
   line-height: 20px;
   align-self: flex-start;
   white-space: nowrap;
 }
-.footer {
+.mod .footer {
   display: flex;
   justify-content: center;
   margin-top: 0px;
@@ -51,16 +51,16 @@
   position: relative;
   flex: 1px;
 }
-.class_4 {
+.mod .class_4 {
   width: 100px;
   height: 28px;
   position: absolute;
   bottom: 12px;
   right: 12px;
 }
-.class_5 {
+.mod .class_5 {
 }
-.title {
+.mod .title {
   color: rgba(51, 51, 51, 1);
   font-size: 30px;
   line-height: 44px;
@@ -73,26 +73,26 @@
   webkit-box-orient: vertical;
   white-space: normal;
 }
-.group {
+.mod .group {
   display: flex;
   justify-content: space-between;
   margin-left: 10px;
   width: 306px;
   align-self: center;
 }
-.view {
+.mod .view {
   display: flex;
   justify-content: space-between;
   align-self: center;
   height: 28px;
   width: 204px;
 }
-.icon_avatar {
+.mod .icon_avatar {
   width: 30px;
   height: 28px;
   align-self: center;
 }
-.info {
+.mod .info {
   color: rgba(102, 102, 102, 1);
   font-size: 24px;
   font-weight: 300;
@@ -103,7 +103,7 @@
   max-width: 168px;
   white-space: nowrap;
 }
-.view_1 {
+.mod .view_1 {
   display: flex;
   justify-content: space-between;
   align-self: center;
@@ -111,12 +111,12 @@
   width: 62px;
   padding: 1px 0;
 }
-.icon_star {
+.mod .icon_star {
   width: 22px;
   height: 22px;
   align-self: center;
 }
-.num {
+.mod .num {
   color: rgba(153, 153, 153, 1);
   font-size: 22px;
   line-height: 26px;

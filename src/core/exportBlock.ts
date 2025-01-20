@@ -32,16 +32,9 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     prettier,
     scale,
     componentsMap,
-    folder,
     dslConfig = {},
     _,
   } = option;
-
-  const isExportGlobalFile =
-    dslConfig.globalCss && schema.componentName == "Page";
-
-  const fileName = schema.fileName;
-  const { cssUnit } = dslConfig;
   const rootSchema = schema;
   // const folderName = `components/${schema.fileName}`;
   const folderName = ``;
@@ -99,9 +92,6 @@ export default function exportMod(schema, option): IPanelDisplay[] {
 
   const _ratio = width / viewportWidth;
   let isPage = false;
-  if (isExportGlobalFile) {
-    importStyles.push(` <style src="./global.css" />`);
-  }
   importStyles.push(` <style src="./index.css" />`);
 
   const transformEventName = (name) => {
@@ -439,9 +429,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     importStyles,
   })
 
-  const prefix = dslConfig.inlineStyle
-    ? ""
-    : schema.props && schema.props.className;
+  const prefix =  schema.props && schema.props.className;
 
   // 获取当前 节点 所有 动画参数
   const animationKeyframes = addAnimation(schema);
@@ -456,12 +444,11 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     },
   ];
 
+  const cssValue = `${generateCSS(style, prefix)} ${animationKeyframes}`;
+  // console.log('index.css', cssValue)
   panelDisplay.push({
     panelName: `index.css`,
-    panelValue: prettier.format(
-      `${generateCSS(style, prefix)} ${animationKeyframes}`,
-      prettierCssOpt
-    ),
+    panelValue: prettier.format(cssValue, prettierCssOpt),
     panelType: "css",
     folder: folderName,
   });
