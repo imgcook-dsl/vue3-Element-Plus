@@ -491,10 +491,11 @@ export const parseCondition = (condition, render) => {
 
 // flexDirection -> flex-direction
 export const parseCamelToLine = (string) => {
-  return string
+  return ` ${string}`
     .split(/(?=[A-Z])/)
     .join('-')
-    .toLowerCase();
+    .toLowerCase()
+    .trim();
 };
 
 // style obj -> css
