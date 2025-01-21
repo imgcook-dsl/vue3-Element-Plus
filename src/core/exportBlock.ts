@@ -24,17 +24,12 @@ import {
   prettierVueOpt,
   prettierJsOpt,
   prettierCssOpt,
+  DSL_CONFIG,
 } from "./consts";
 import genVue from "./genVue";
 
 export default function exportMod(schema, option): IPanelDisplay[] {
-  const {
-    prettier,
-    scale,
-    componentsMap,
-    dslConfig = {},
-    _,
-  } = option;
+  const { prettier, scale, componentsMap, _ } = option;
   const rootSchema = schema;
   // const folderName = `components/${schema.fileName}`;
   const folderName = ``;
@@ -48,7 +43,6 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   // imports mods
   const importMods: { _import: string; compName: string }[] = [];
 
-  const importStyles: string[] = [];
 
   // import components
   const components: string[] = [];
@@ -69,9 +63,6 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   // lifeCycles
   const lifeCycles: string[] = [];
 
-  // styles
-  const styles = [];
-
   // inline style
   const style = {};
 
@@ -89,10 +80,9 @@ export default function exportMod(schema, option): IPanelDisplay[] {
 
   // 1vw = width / 100
   const _w = width / 100;
-
   const _ratio = width / viewportWidth;
+
   let isPage = false;
-  importStyles.push(` <style src="./index.css" />`);
 
   const transformEventName = (name) => {
     return name.replace("on", "").toLowerCase();
@@ -419,39 +409,42 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   datas.push(`constants: ${toString(constants)}`);
   datas = datas.filter((i) => i !== "");
 
-  const indexValue = genVue({
+  const panelDisplay: IPanelDisplay[] = [];
+
+  const prefix = schema.props && schema.props.className;
+  const animationKeyframes = addAnimation(schema);
+  let styleStr = '';
+
+  if (DSL_CONFIG.singleFile) {
+    styleStr = `<style scoped>${generateCSS(style)} ${animationKeyframes}</style>`
+  } else {
+    styleStr = `${generateCSS(style, prefix)} ${animationKeyframes}`
+    panelDisplay.push({
+      panelName: `index.css`,
+      panelValue: prettier.format(styleStr, prettierCssOpt),
+      panelType: "css",
+      folder: folderName,
+    });
+    styleStr = `<style src="./index.css" />`
+  }
+
+  const indexStr = genVue({
     template,
     imports,
     importMods,
     datas,
     methods,
     lifeCycles,
-    importStyles,
-  })
-
-  const prefix =  schema.props && schema.props.className;
-
-  // 获取当前 节点 所有 动画参数
-  const animationKeyframes = addAnimation(schema);
-
-  const panelDisplay: IPanelDisplay[] = [
-    {
-      panelName: `index.vue`,
-      panelValue: prettier.format(indexValue, prettierVueOpt),
-      panelType: "vue",
-      folder: folderName,
-      panelImports: imports,
-    },
-  ];
-
-  const cssValue = `${generateCSS(style, prefix)} ${animationKeyframes}`;
-  // console.log('index.css', cssValue)
-  panelDisplay.push({
-    panelName: `index.css`,
-    panelValue: prettier.format(cssValue, prettierCssOpt),
-    panelType: "css",
-    folder: folderName,
+    styleStr,
   });
 
-  return panelDisplay
+  panelDisplay.push({
+    panelName: `index.vue`,
+    panelValue: prettier.format(indexStr, prettierVueOpt),
+    panelType: "vue",
+    folder: folderName,
+    panelImports: imports,
+  });
+
+  return panelDisplay;
 }

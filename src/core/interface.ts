@@ -1,11 +1,10 @@
-
 export interface IPanelDisplay {
   panelName: string;
   panelValue: string;
   panelType: string;
   folder?: string;
   type?: string;
-  panelImports?: IImport[]
+  panelImports?: IImport[];
 }
 
 export interface IImport {
@@ -15,10 +14,11 @@ export interface IImport {
 }
 
 export interface IDslConfig {
-  scale: number,
+  scale: number;
   globalCss: boolean;
-  cssUnit: 'px' | 'vw' | 'rpx' | 'rem';
-  outputStyle: 'project' | 'component';
-  cssStyle: 'kebabCase' | 'camelCase' | 'snakeCase',
-  htmlFontSize: number
+  cssUnit: "px" | "vw" | "rpx" | "rem";
+  outputStyle: "project" | "component";
+  cssStyle: "kebabCase" | "camelCase" | "snakeCase";
+  htmlFontSize: number;
+  singleFile: boolean;
 }

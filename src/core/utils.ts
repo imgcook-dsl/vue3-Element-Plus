@@ -499,7 +499,7 @@ export const parseCamelToLine = (string) => {
 };
 
 // style obj -> css
-export const generateCSS = (style, prefix) => {
+export const generateCSS = (style, prefix = '') => {
   let css = '';
 
   for (let layer in style) {

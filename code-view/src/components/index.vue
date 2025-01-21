@@ -42,4 +42,130 @@ const state = reactive({
   </div>
 </template>
 
-<style src="./index.css" />
+<style scoped>
+.mod {
+  position: relative;
+  background-color: #ffffff;
+  font-family: PingFang SC;
+}
+.class_1 {
+  display: flex;
+  width: 100%;
+  height: 324px;
+  position: relative;
+}
+.body {
+  display: flex;
+  justify-content: flex-start;
+  width: 342px;
+  height: 100%;
+  position: relative;
+}
+.item {
+  width: 342px;
+  height: 324px;
+  align-self: flex-start;
+  border-radius: 12px;
+}
+.tag_wrapper {
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px 10px;
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  background-color: #ffb902;
+  border-radius: 6px;
+}
+.tag {
+  color: rgba(255, 255, 255, 1);
+  font-size: 20px;
+  line-height: 20px;
+  align-self: flex-start;
+  white-space: nowrap;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+  padding-top: 3px;
+  padding-right: 12px;
+  padding-bottom: 0px;
+  padding-left: 12px;
+  height: 324px;
+  position: relative;
+  flex: 1px;
+}
+.class_4 {
+  width: 100px;
+  height: 28px;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+}
+.class_5 {
+}
+.title {
+  color: rgba(51, 51, 51, 1);
+  font-size: 30px;
+  line-height: 44px;
+  align-self: center;
+  width: 306px;
+  height: 88px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+.group {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  width: 306px;
+  align-self: center;
+}
+.view {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  height: 28px;
+  width: 204px;
+}
+.icon_avatar {
+  width: 30px;
+  height: 28px;
+  align-self: center;
+}
+.info {
+  color: rgba(102, 102, 102, 1);
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 28px;
+  align-self: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 168px;
+  white-space: nowrap;
+}
+.view_1 {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  height: 28px;
+  width: 62px;
+  padding: 1px 0;
+}
+.icon_star {
+  width: 22px;
+  height: 22px;
+  align-self: center;
+}
+.num {
+  color: rgba(153, 153, 153, 1);
+  font-size: 22px;
+  line-height: 26px;
+  align-self: center;
+  white-space: nowrap;
+}
+</style>

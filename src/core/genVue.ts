@@ -5,7 +5,7 @@ const genVue = ({
   datas,
   methods,
   lifeCycles,
-  importStyles,
+  styleStr,
 }) => `
 <script setup>
 import { reactive } from 'vue'
@@ -21,7 +21,7 @@ const state = reactive({
     ${template}
 </template>
 
-${importStyles.join("\n")}
+${styleStr}
 `;
 
 export default genVue;
