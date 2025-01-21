@@ -58,7 +58,7 @@ export let DSL_CONFIG: IDslConfig = {
   outputStyle: 'component',
   cssStyle: 'camelCase',
   htmlFontSize: 16,
-  singleFile: true,
+  cssFile: false,
 };
 
 

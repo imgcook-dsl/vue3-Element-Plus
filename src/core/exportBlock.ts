@@ -295,7 +295,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
         }
         break;
       default:
-        const compName = `el-${type}`;
+        const compName = `el-${_.kebabCase(type)}`;
         if (json.children && json.children.length) {
           xml = `<${compName}${classString}${props}>${transform(
             json.children
@@ -415,9 +415,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   const animationKeyframes = addAnimation(schema);
   let styleStr = '';
 
-  if (DSL_CONFIG.singleFile) {
-    styleStr = `<style scoped>${generateCSS(style)} ${animationKeyframes}</style>`
-  } else {
+  if (DSL_CONFIG.cssFile) {
     styleStr = `${generateCSS(style, prefix)} ${animationKeyframes}`
     panelDisplay.push({
       panelName: `index.css`,
@@ -426,6 +424,8 @@ export default function exportMod(schema, option): IPanelDisplay[] {
       folder: folderName,
     });
     styleStr = `<style src="./index.css" />`
+  } else {
+    styleStr = `<style scoped>${generateCSS(style)} ${animationKeyframes}</style>`
   }
 
   const indexStr = genVue({

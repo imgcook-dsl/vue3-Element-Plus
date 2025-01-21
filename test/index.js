@@ -42,8 +42,9 @@ const runCode = (data, dslConfig) => {
 const panelDisplay = runCode(data, {
   dsl: "vue",
   dslName: "vue",
+  cssFile: false,
   cssUnit: "px",
-  cssStyle: 'snakeCase',
+  cssStyle: 'camelCase',
   globalCss: false,
   htmlFontSize: "16",
   responseHeight: 1334,

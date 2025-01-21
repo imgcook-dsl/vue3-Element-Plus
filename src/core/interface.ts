@@ -20,5 +20,5 @@ export interface IDslConfig {
   outputStyle: "project" | "component";
   cssStyle: "kebabCase" | "camelCase" | "snakeCase";
   htmlFontSize: number;
-  singleFile: boolean;
+  cssFile: boolean;
 }
