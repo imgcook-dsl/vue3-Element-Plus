@@ -3,26 +3,26 @@
   background-color: #ffffff;
   font-family: PingFang SC;
 }
-.mod .class1 {
+.class1 {
   display: flex;
   width: 100%;
   height: 324px;
   position: relative;
 }
-.mod .body {
+.body {
   display: flex;
   justify-content: flex-start;
   width: 342px;
   height: 100%;
   position: relative;
 }
-.mod .item {
+.item {
   width: 342px;
   height: 324px;
   align-self: flex-start;
   border-radius: 12px;
 }
-.mod .tagWrapper {
+.tagWrapper {
   display: flex;
   justify-content: flex-start;
   padding: 5px 10px;
@@ -32,14 +32,14 @@
   background-color: #ffb902;
   border-radius: 6px;
 }
-.mod .tag {
+.tag {
   color: rgba(255, 255, 255, 1);
   font-size: 20px;
   line-height: 20px;
   align-self: flex-start;
   white-space: nowrap;
 }
-.mod .footer {
+.footer {
   display: flex;
   justify-content: center;
   margin-top: 0px;
@@ -51,16 +51,16 @@
   position: relative;
   flex: 1px;
 }
-.mod .class4 {
+.class4 {
   width: 100px;
   height: 28px;
   position: absolute;
   bottom: 12px;
   right: 12px;
 }
-.mod .class5 {
+.class5 {
 }
-.mod .title {
+.title {
   color: rgba(51, 51, 51, 1);
   font-size: 30px;
   line-height: 44px;
@@ -73,26 +73,26 @@
   -webkit-box-orient: vertical;
   white-space: normal;
 }
-.mod .group {
+.group {
   display: flex;
   justify-content: space-between;
   margin-left: 10px;
   width: 306px;
   align-self: center;
 }
-.mod .view {
+.view {
   display: flex;
   justify-content: space-between;
   align-self: center;
   height: 28px;
   width: 204px;
 }
-.mod .iconAvatar {
+.iconAvatar {
   width: 30px;
   height: 28px;
   align-self: center;
 }
-.mod .info {
+.info {
   color: rgba(102, 102, 102, 1);
   font-size: 24px;
   font-weight: 300;
@@ -103,7 +103,7 @@
   max-width: 168px;
   white-space: nowrap;
 }
-.mod .view1 {
+.view1 {
   display: flex;
   justify-content: space-between;
   align-self: center;
@@ -111,12 +111,12 @@
   width: 62px;
   padding: 1px 0;
 }
-.mod .iconStar {
+.iconStar {
   width: 22px;
   height: 22px;
   align-self: center;
 }
-.mod .num {
+.num {
   color: rgba(153, 153, 153, 1);
   font-size: 22px;
   line-height: 26px;

@@ -5,8 +5,23 @@ const _ = require("lodash");
 const data = require("./data.js");
 const componentsMap = require("./componentsMap1");
 const helper = require("@imgcook/dsl-helper");
-const prettier = require("prettier");
 const entry = require("../src/index");
+
+const prettier = require("prettier/standalone");
+const parserHtml = require("prettier/parser-html");
+const parserBabel = require("prettier/parser-babel");
+const parserCss = require("prettier/parser-postcss");
+const parserMarkDown = require("prettier/parser-markdown");
+const browerParser = {
+  babel: parserBabel,
+  json: parserBabel,
+  vue: parserHtml,
+  css: parserCss,
+  scss: parserCss,
+  less: parserCss,
+  html: parserHtml,
+  md: parserMarkDown,
+};
 
 const vm = new NodeVM({
   console: "inherit",
@@ -24,7 +39,21 @@ const runCode = (data, dslConfig) => {
   );
 
   const options = {
-    prettier: { format: prettier.format },
+    prettier: {
+      format: (str, opt) => {
+        if (opt && browerParser[opt.parser]) {
+          opt.plugins = [browerParser[opt.parser]];
+        } else {
+          return str;
+        }
+        try {
+          return prettier.format(str, opt);
+        } catch (e) {
+          console.error("format error", e);
+          return str;
+        }
+      },
+    },
     _: _,
     responsive: {
       width: 750,
@@ -36,6 +65,7 @@ const runCode = (data, dslConfig) => {
 
   const files = vm.run(code)(data, options);
   // const files = entry(data, options);
+  // console.log('files', files)
   return files.panelDisplay;
 };
 
@@ -44,13 +74,13 @@ const panelDisplay = runCode(data, {
   dslName: "vue",
   cssFile: false,
   cssUnit: "px",
-  cssStyle: 'camelCase',
+  cssStyle: "camelCase",
   globalCss: false,
   htmlFontSize: "16",
   responseHeight: 1334,
   responseWidth: 750,
   outputStyle: "component",
-  componentStyle:  "hooks",
+  componentStyle: "hooks",
 });
 
 // console.log('panelDisplay', panelDisplay)

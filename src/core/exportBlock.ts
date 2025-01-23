@@ -411,24 +411,21 @@ export default function exportMod(schema, option): IPanelDisplay[] {
 
   const panelDisplay: IPanelDisplay[] = [];
 
-  const prefix = schema.props && schema.props.className;
+  // const prefix = schema.props && schema.props.className;
   const animationKeyframes = addAnimation(schema);
-  let styleStr = '';
-
+  let styleStr = `${generateCSS(style)} ${animationKeyframes}`;
+  styleStr = prettier.format(styleStr, prettierCssOpt);
   if (DSL_CONFIG.cssFile) {
-    styleStr = `${generateCSS(style, prefix)} ${animationKeyframes}`
     panelDisplay.push({
       panelName: `index.css`,
-      panelValue: prettier.format(styleStr, prettierCssOpt),
+      panelValue: styleStr,
       panelType: "css",
       folder: folderName,
     });
-    styleStr = `<style src="./index.css" />`
-  } else {
-    styleStr = `<style scoped>${generateCSS(style)} ${animationKeyframes}</style>`
+    styleStr = `@import './index.css';`
   }
 
-  const indexStr = genVue({
+  const vueStr = genVue({
     template,
     imports,
     importMods,
@@ -436,11 +433,12 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     methods,
     lifeCycles,
     styleStr,
+    prettier,
   });
 
   panelDisplay.push({
     panelName: `index.vue`,
-    panelValue: prettier.format(indexStr, prettierVueOpt),
+    panelValue: prettier.format(vueStr, prettierVueOpt),
     panelType: "vue",
     folder: folderName,
     panelImports: imports,
