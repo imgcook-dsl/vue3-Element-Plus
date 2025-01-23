@@ -9,36 +9,50 @@ const state = reactive({
 
 <template>
   <div class="mod">
-    <div class="class1" v-for="(item, index) in state.loopData" :key="index">
-      <div class="body">
-        <img
-          class="item"
-          src="https://static.imgcook.com/img/test/aae95370ae1c11efab3a11063cae6c8a.png"
-        />
-        <div class="tagWrapper"><span class="tag">整屋</span></div>
-      </div>
-      <div class="footer">
-        <el-button class="class4"
-          ><span class="class5">按钮文本</span> </el-button
-        ><span class="title">拥有超多功能的40平米简约小公寓了解一下</span>
-        <div class="group">
-          <div class="view">
-            <img
-              class="iconAvatar"
-              src="https://static.imgcook.com/img/test/aabe72e0ae1c11efa5cee1656f595e97.png"
-            />
-            <span class="info">花花设计工作…</span>
-          </div>
-          <div class="view1">
-            <img
-              class="iconStar"
-              src="https://static.imgcook.com/img/test/aabd3a60ae1c11ef98507d64bc18c843.png"
-            />
-            <span class="num">168</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <el-container class="class6"
+      ><el-header class="class7"></el-header
+      ><el-container class="class11"
+        ><el-aside class="class10"></el-aside
+        ><el-container class="class12"
+          ><el-main class="class9">
+            <div
+              class="class1"
+              v-for="(item, index) in state.loopData"
+              :key="index"
+            >
+              <div class="body">
+                <img
+                  class="item"
+                  src="https://static.imgcook.com/img/test/aae95370ae1c11efab3a11063cae6c8a.png"
+                />
+                <div class="tagWrapper"><span class="tag">整屋</span></div>
+              </div>
+              <div class="footer">
+                <el-button class="class4"
+                  ><span class="class5">查看详情</span> </el-button
+                ><span class="title"
+                  >拥有超多功能的40平米简约小公寓了解一下</span
+                >
+                <div class="group">
+                  <div class="view">
+                    <img
+                      class="iconAvatar"
+                      src="https://static.imgcook.com/img/test/aabe72e0ae1c11efa5cee1656f595e97.png"
+                    />
+                    <span class="info">花花设计工作…</span>
+                  </div>
+                  <div class="view1">
+                    <img
+                      class="iconStar"
+                      src="https://static.imgcook.com/img/test/aabd3a60ae1c11ef98507d64bc18c843.png"
+                    />
+                    <span class="num">168</span>
+                  </div>
+                </div>
+              </div>
+            </div></el-main
+          ><el-footer class="class8"></el-footer></el-container></el-container
+    ></el-container>
   </div>
 </template>
 
@@ -48,11 +62,31 @@ const state = reactive({
   background-color: #ffffff;
   font-family: PingFang SC;
 }
+.class6 {
+}
+.class7 {
+  background-color: #50e3c2;
+}
+.class11 {
+}
+.class10 {
+  background-color: #f5a623;
+}
+.class12 {
+}
+.class9 {
+}
 .class1 {
   display: flex;
+  margin-bottom: 10px;
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
   width: 100%;
-  height: 324px;
   position: relative;
+  border: 1px solid #9b9b9b;
+  min-width: 1000px;
 }
 .body {
   display: flex;
@@ -167,5 +201,8 @@ const state = reactive({
   line-height: 26px;
   align-self: center;
   white-space: nowrap;
+}
+.class8 {
+  background-color: #4a90e2;
 }
 </style>

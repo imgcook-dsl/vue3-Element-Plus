@@ -2,9 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const { NodeVM } = require("vm2");
 const _ = require("lodash");
-const data = require("./data.js");
 const componentsMap = require("./componentsMap1");
 const helper = require("@imgcook/dsl-helper");
+// const data = require("./data.js");
 const entry = require("../src/index");
 
 const prettier = require("prettier/standalone");
@@ -28,47 +28,11 @@ const vm = new NodeVM({
   sandbox: {},
 });
 
-const runCode = (data, dslConfig) => {
-  data = _.cloneDeep(data);
-  const config = _.get(data, "imgcook.dslConfig", {});
-  _.set(data, "imgcook.dslConfig", Object.assign(config, dslConfig));
-
-  const code = fs.readFileSync(
-    path.resolve(__dirname, "../src/index.js"),
-    "utf8"
-  );
-
-  const options = {
-    prettier: {
-      format: (str, opt) => {
-        if (opt && browerParser[opt.parser]) {
-          opt.plugins = [browerParser[opt.parser]];
-        } else {
-          return str;
-        }
-        try {
-          return prettier.format(str, opt);
-        } catch (e) {
-          console.error("format error", e);
-          return str;
-        }
-      },
-    },
-    _: _,
-    responsive: {
-      width: 750,
-      viewportWidth: 375,
-    },
-    helper,
-    componentsMap,
-  };
-
-  const files = vm.run(code)(data, options);
-  // const files = entry(data, options);
-  // console.log('files', files)
-  return files.panelDisplay;
-};
-
+const data = JSON.parse(
+  fs
+    .readFileSync(path.resolve(__dirname, "./data.js"), "utf8")
+    .replace("export default ", "")
+);
 const panelDisplay = runCode(data, {
   dsl: "vue",
   dslName: "vue",
@@ -82,11 +46,9 @@ const panelDisplay = runCode(data, {
   outputStyle: "component",
   componentStyle: "hooks",
 });
-
 // console.log('panelDisplay', panelDisplay)
 
 const baseDir = "../code-view/src/components";
-
 // if (fs.existsSync(path.join(__dirname, baseDir))) {
 //   fs.rmdirSync(path.join(__dirname, baseDir), { recursive: true });
 //   console.log('删除文件夹')
@@ -122,6 +84,47 @@ function mkDirsSync(dirname) {
     }
   }
 }
+
+function runCode(data, dslConfig) {
+  data = _.cloneDeep(data);
+  const config = _.get(data, "imgcook.dslConfig", {});
+  _.set(data, "imgcook.dslConfig", Object.assign(config, dslConfig));
+
+  const options = {
+    prettier: {
+      format: (str, opt) => {
+        if (opt && browerParser[opt.parser]) {
+          opt.plugins = [browerParser[opt.parser]];
+        } else {
+          return str;
+        }
+        try {
+          return prettier.format(str, opt);
+        } catch (e) {
+          console.error("format error", e);
+          return str;
+        }
+      },
+    },
+    _: _,
+    responsive: {
+      width: 750,
+      viewportWidth: 375,
+    },
+    helper,
+    componentsMap,
+  };
+
+  const code = fs.readFileSync(
+    path.resolve(__dirname, "../src/index.js"),
+    "utf8"
+  );
+
+  const files = vm.run(code)(data, options);
+  // const files = entry(data, options);
+  // console.log('files', files)
+  return files.panelDisplay;
+};
 
 module.exports = {
   runCode,
