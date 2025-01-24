@@ -1,4 +1,4 @@
-import { prettierJsOpt } from "./consts";
+import { prettierHtmlOpt, prettierJsOpt } from "./consts";
 
 const handleScript = ({ imports, importMods, datas, prettier }) => {
   const rawStr = `
@@ -13,13 +13,19 @@ const handleScript = ({ imports, importMods, datas, prettier }) => {
   return prettier.format(rawStr, prettierJsOpt);
 };
 
+const handleTemplate = (templateStr, prettier) => {
+  templateStr = templateStr.replaceAll('>', '>\n');
+  templateStr = prettier.format(templateStr, prettierHtmlOpt);
+  return templateStr.replaceAll('> ', '>');
+}
+
 const genVue = ({
-  template,
   imports,
   importMods,
   datas,
   methods,
   lifeCycles,
+  templateStr,
   styleStr,
   prettier,
 }) => `
@@ -28,7 +34,7 @@ ${handleScript({ imports, importMods, datas, prettier })}
 </script>
 
 <template>
-${template}
+${handleTemplate(templateStr, prettier)}
 </template>
 
 <style scoped>

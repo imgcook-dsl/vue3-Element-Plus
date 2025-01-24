@@ -9,12 +9,12 @@ const state = reactive({
 
 <template>
   <div class="mod">
-    <el-container class="class6"
-      ><el-header class="class7"></el-header
-      ><el-container class="class11"
-        ><el-aside class="class10"></el-aside
-        ><el-container class="class12"
-          ><el-main class="class9">
+    <el-container class="class6">
+      <el-header class="class7"></el-header>
+      <el-container class="class11">
+        <el-aside class="class10"></el-aside>
+        <el-container class="class12">
+          <el-main class="class9">
             <div
               class="class1"
               v-for="(item, index) in state.loopData"
@@ -25,12 +25,15 @@ const state = reactive({
                   class="item"
                   src="https://static.imgcook.com/img/test/aae95370ae1c11efab3a11063cae6c8a.png"
                 />
-                <div class="tagWrapper"><span class="tag">整屋</span></div>
+                <div class="tagWrapper">
+                  <span class="tag">整屋</span>
+                </div>
               </div>
               <div class="footer">
-                <el-button class="class4"
-                  ><span class="class5">查看详情</span> </el-button
-                ><span class="title"
+                <el-button class="class4">
+                  <span class="class5">查看详情</span>
+                </el-button>
+                <span class="title"
                   >拥有超多功能的40平米简约小公寓了解一下</span
                 >
                 <div class="group">
@@ -50,9 +53,12 @@ const state = reactive({
                   </div>
                 </div>
               </div>
-            </div></el-main
-          ><el-footer class="class8"></el-footer></el-container></el-container
-    ></el-container>
+            </div>
+          </el-main>
+          <el-footer class="class8"></el-footer>
+        </el-container>
+      </el-container>
+    </el-container>
   </div>
 </template>
 

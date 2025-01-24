@@ -426,12 +426,12 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   }
 
   const vueStr = genVue({
-    template,
     imports,
     importMods,
     datas,
     methods,
     lifeCycles,
+    templateStr: template[0],
     styleStr,
     prettier,
   });
