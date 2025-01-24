@@ -64,11 +64,13 @@ const state = reactive({
 
 <style scoped>
 .mod {
+  height: 100%;
   position: relative;
   background-color: #ffffff;
   font-family: PingFang SC;
 }
 .class6 {
+  height: 100%;
 }
 .class7 {
   background-color: #50e3c2;

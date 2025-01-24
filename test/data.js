@@ -5,6 +5,7 @@ export default {
   "originType": "",
   "props": {
     "style": {
+      "height": "100%",
       "position": "relative",
       "backgroundColor": "#ffffff"
     },
@@ -23,7 +24,10 @@ export default {
   "children": [{
     "componentName": "Container",
     "props": {
-      "className": "class-6"
+      "className": "class-6",
+      "style": {
+        "height": "100%"
+      }
     },
     "children": [{
       "componentName": "Header",
@@ -69,7 +73,7 @@ export default {
               "style": {
                 "display": "flex",
                 "flexDirection": "row",
-                "marginBottom": "10",
+                "marginBottom": "10px",
                 "paddingTop": "2px",
                 "paddingRight": "2px",
                 "paddingBottom": "2px",
@@ -569,7 +573,7 @@ export default {
       "outputStyle": "component",
       "dslName": "vue3-Element-Plus",
       "accessible": true,
-      "cssFile": true
+      "cssFile": false
     }
   },
   "fileName": "index",
