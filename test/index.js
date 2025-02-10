@@ -45,6 +45,7 @@ const panelDisplay = runCode(data, {
   responseWidth: 750,
   outputStyle: "component",
   componentStyle: "hooks",
+  isDev: true,
 });
 // console.log('panelDisplay', panelDisplay)
 
@@ -120,8 +121,8 @@ function runCode(data, dslConfig) {
     "utf8"
   );
 
-  const files = vm.run(code)(data, options);
-  // const files = entry(data, options);
+  // const files = vm.run(code)(data, options);
+  const files = entry(data, options);
   // console.log('files', files)
   return files.panelDisplay;
 };

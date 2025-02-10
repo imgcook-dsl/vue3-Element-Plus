@@ -34,18 +34,11 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   // const folderName = `components/${schema.fileName}`;
   const folderName = ``;
 
-  // template
-  const template: string[] = [];
-
   // imports
   const imports: IImport[] = [];
 
   // imports mods
   const importMods: { _import: string; compName: string }[] = [];
-
-
-  // import components
-  const components: string[] = [];
 
   // Global Public Functions
   const utils: string[] = [];
@@ -63,7 +56,6 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   // lifeCycles
   const lifeCycles: string[] = [];
 
-  // inline style
   const style = {};
 
   const lifeCycleMap = {
@@ -170,25 +162,6 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     }
   };
 
-  // parse condition: whether render the layer
-  const parseCondition = (condition, render) => {
-    let _condition = isExpression(condition)
-      ? condition.slice(2, -2)
-      : condition;
-    if (typeof _condition === "string") {
-      _condition = _condition.replace("this.", "").replace("state.", "");
-    } else if (typeof _condition === "boolean") {
-      _condition = String(_condition);
-    }
-
-    render = render.trim();
-    render = render.replace(
-      /^<\w+\s/,
-      `${render.match(/^<\w+\s/)[0]} v-if="${_condition}" `
-    );
-    return render;
-  };
-
   // parse loop render
   const parseLoop = (loop, loopArg, render) => {
     let data;
@@ -221,18 +194,15 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   };
 
   // generate render xml
-  const generateRender = (json, isReplace = false) => {
+  const generateRender = (json) => {
     const type = json.componentName.toLowerCase();
     const className = json.props && json.props.className;
     let classString = json.classString || "";
-
     if (className) {
       style[className] = parseStyle(json.props.style);
     }
-
     let xml;
     let props = "";
-
     Object.keys(json.props).forEach((key) => {
       if (
         ["className", "style", "text", "src", "lines", "dealGradient"].indexOf(
@@ -244,6 +214,19 @@ export default function exportMod(schema, option): IPanelDisplay[] {
         )}`;
       }
     });
+    const getXml = (json, label) => {
+      let xml = '';
+      if (json.children && json.children.length) {
+        xml = `<${label}${classString}${props}>${json.children
+          .map((node) => {
+            return generateRender(node);
+          })
+          .join("")}</${label}>`;
+      } else {
+        xml = `<${label}${classString}${props} ></${label}>`;
+      }
+      return xml
+    }
     switch (type) {
       case "text":
         const innerText = parseProps(json.props.text, true);
@@ -258,144 +241,20 @@ export default function exportMod(schema, option): IPanelDisplay[] {
           xml = `<img${classString}${props} src=${source} /> `;
         }
         break;
-
+      case "div":
       case "page":
       case "block":
       case "component":
-        if (isReplace) {
-          const compName = json.fileName;
-          xml = `<${compName} />`;
-          // 当前是 Page 模块
-          const compPath =
-            rootSchema.componentName == "Page" ? "./components" : "..";
-          importMods.push({
-            _import: `import ${compName} from '${compPath}/${compName}';`,
-            compName: compName,
-          });
-          delete style[className];
-        } else if (json.children && json.children.length) {
-          xml = `<div ${classString} ${props}>${json.children
-            .map((node) => {
-              return generateRender(node, true);
-            })
-            .join("")}</div>`;
-        } else {
-          xml = `<div ${classString} ${props} />`;
-        }
-        break;
-      case "div":
-        if (json.children && json.children.length) {
-          xml = `<div ${classString} ${props}>${json.children
-            .map((node) => {
-              return generateRender(node, true);
-            })
-            .join("")}</div>`;
-        } else {
-          xml = `<div ${classString} ${props} />`;
-        }
+        xml = getXml(json, 'div');
         break;
       default:
         const compName = `el-${_.kebabCase(type)}`;
-        if (json.children && json.children.length) {
-          xml = `<${compName}${classString}${props}>${transform(
-            json.children
-          )}</${compName}>`;
-        } else {
-          xml = `<${compName}${classString}${props} ></${compName}>`;
-        }
+        xml = getXml(json, compName);
     }
-
     if (json.loop) {
       xml = parseLoop(json.loop, json.loopArgs, xml);
     }
-    if (json.condition && type !== "image") {
-      xml = parseCondition(json.condition, xml);
-    }
     return xml || "";
-  };
-
-  // parse schema
-  const transform = (schema, flag = false) => {
-    if (typeof schema == "string") {
-      return schema;
-    }
-    let result = "";
-    if (flag && schema.componentName === "Page") {
-      isPage = true;
-    }
-    if (Array.isArray(schema)) {
-      schema.forEach((layer) => {
-        result += transform(layer);
-      });
-    } else {
-      let type = schema.componentName.toLowerCase();
-      if (isPage && type === "block") {
-        type = "div";
-      }
-
-      if (["page", "block", "component"].indexOf(type) !== -1) {
-        // 容器组件处理: state/method/dataSource/lifeCycle/render
-        const init: string[] = [];
-
-        if (schema.state) {
-          datas.push(`${toString(schema.state).slice(1, -1)}`);
-        }
-
-        if (schema.methods) {
-          Object.keys(schema.methods).forEach((name) => {
-            const { params, content } = parseFunction(schema.methods[name]);
-            methods.push(`${name}(${params}) {${content}}`);
-          });
-        }
-
-        if (schema.dataSource && Array.isArray(schema.dataSource.list)) {
-          schema.dataSource.list.forEach((item) => {
-            if (typeof item.isInit === "boolean" && item.isInit) {
-              init.push(`this.${item.id}();`);
-            } else if (typeof item.isInit === "string") {
-              init.push(
-                `if (${parseProps(item.isInit)}) { this.${item.id}(); }`
-              );
-            }
-            const parseDataSourceData = parseDataSource(item, imports);
-            methods.push(parseDataSourceData.value);
-          });
-
-          if (schema.dataSource.dataHandler) {
-            const { params, content } = parseFunction(
-              schema.dataSource.dataHandler
-            );
-            methods.push(`dataHandler(${params}) {${content}}`);
-            init.push(`this.dataHandler()`);
-          }
-        }
-
-        if (schema.lifeCycles) {
-          if (!schema.lifeCycles["_constructor"]) {
-            lifeCycles.push(
-              `${lifeCycleMap["_constructor"]}() { ${init.join("\n")}}`
-            );
-          }
-
-          Object.keys(schema.lifeCycles).forEach((name) => {
-            const vueLifeCircleName = lifeCycleMap[name] || name;
-            const { params, content } = parseFunction(schema.lifeCycles[name]);
-
-            if (name === "_constructor") {
-              lifeCycles.push(
-                `${vueLifeCircleName}() {${content} ${init.join("\n")}}`
-              );
-            } else {
-              lifeCycles.push(`${vueLifeCircleName}() {${content}}`);
-            }
-          });
-        }
-        template.push(generateRender(schema));
-      } else {
-        result += generateRender(schema);
-      }
-    }
-    return result;
   };
 
   if (option.utils) {
@@ -404,8 +263,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     });
   }
 
-  // start parse schema
-  transform(schema, true);
+  const templateStr = generateRender(schema);
   datas.push(`constants: ${toString(constants)}`);
   datas = datas.filter((i) => i !== "");
 
@@ -422,16 +280,12 @@ export default function exportMod(schema, option): IPanelDisplay[] {
       panelType: "css",
       folder: folderName,
     });
-    styleStr = `@import './index.css';`
+    styleStr = `@import './index.css';`;
   }
 
   const vueStr = genVue({
-    imports,
-    importMods,
     datas,
-    methods,
-    lifeCycles,
-    templateStr: template[0],
+    templateStr,
     styleStr,
     prettier,
   });

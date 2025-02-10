@@ -500,6 +500,7 @@ export const parseCamelToLine = (string) => {
 
 // style obj -> css
 export const generateCSS = (style, prefix = '') => {
+  console.log('style', style)
   let css = '';
 
   for (let layer in style) {
