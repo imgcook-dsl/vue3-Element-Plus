@@ -24,7 +24,7 @@ module.exports = function (schema, option) {
   option.componentsMap = transComponentsMap(option.componentsMap);
   option.dslConfig = dslConfig;
 
-  // 预处理
+  // schema预处理
   traverse(schema, (node) => {
     if (node && node.props && node.props.className) {
       // 清理 class 空格
@@ -37,11 +37,11 @@ module.exports = function (schema, option) {
       // 样式属性拼接
       node.classString = ` class="${node.props.className}"`;
     }
+    // 精简样式
+    simpleStyle(node);
   });
 
-  // 精简默认样式
-  simpleStyle(schema);
-  
+
   const panelDisplay: IPanelDisplay[] = exportBlock(schema, option);
 
   return {

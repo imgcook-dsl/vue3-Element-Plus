@@ -184,56 +184,17 @@ export const commonStyle = (schema) => {
 };
 
 // 精简样式
-export const simpleStyle = (schema) => {
-  function getMaxRepeatItem(array) {
-    let a = {};
-    let max = 0;
-    let maxele = null;
-    for (let i = 0; i < array.length; i++) {
-      a[array[i]] == undefined ? (a[array[i]] = 1) : a[array[i]]++;
-      if (a[array[i]] > max) {
-        maxele = array[i];
-        max = a[array[i]];
-      }
-    }
-    return maxele;
-  }
-
-  // 统计出现字体最多的，放到根节点
-  let fontFamilys: string[] = [];
-  traverse(schema, (node) => {
-    const ft = get(node, "props.style.fontFamily");
-    if (ft) {
-      fontFamilys.push(ft);
-    }
-  });
-
-  const rootFont =
-    get(schema, "props.style.fontFamily") || getMaxRepeatItem(fontFamilys);
-  if (rootFont) {
-    traverse(schema, (node) => {
-      const ft = get(node, "props.style.fontFamily");
-      if (ft == rootFont) {
-        unset(node, "props.style.fontFamily");
-      }
-    });
-    set(schema, "props.style.fontFamily", rootFont);
-  }
-
+export const simpleStyle = (node) => {
   // 删除 font-weight 400 或者 normal
-  traverse(schema, (node) => {
-    const removeStyle = (node, styleName, values) => {
-      const fw = get(node, `props.style.${styleName}`);
-      if (values.includes(String(fw) || "")) {
-        unset(node, `props.style.${styleName}`);
-      }
-    };
-    removeStyle(node, "fontWeight", ["400", 400, "normal"]);
-    removeStyle(node, "flexDirection", ["row"]);
-    removeStyle(node, "textDecoration", ["none"]);
-  });
-
-  return schema;
+  const removeStyle = (node, styleName, values) => {
+    const fw = get(node, `props.style.${styleName}`);
+    if (values.includes(String(fw) || "")) {
+      unset(node, `props.style.${styleName}`);
+    }
+  };
+  removeStyle(node, "fontWeight", ["400", 400, "normal"]);
+  removeStyle(node, "flexDirection", ["row"]);
+  removeStyle(node, "textDecoration", ["none"]);
 };
 
 // 遍历节点
@@ -244,7 +205,7 @@ export const traverse = (json, callback) => {
     });
     return;
   }
-  
+
   callback(json);
 
   if (json.children && json.children.length > 0) {

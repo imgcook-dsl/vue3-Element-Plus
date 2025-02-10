@@ -1,28 +1,12 @@
 import { IPanelDisplay, IImport } from "./interface";
 import {
-  toString,
-  existImport,
-  traverse,
-  parseLoop,
   parseStyle,
-  parseFunction,
-  parseProps,
-  parseState,
-  parseLifeCycles,
-  replaceState,
-  parseCondition,
   generateCSS,
-  genStyleClass,
-  parseDataSource,
   isExpression,
   addAnimation,
 } from "./utils";
-
 import {
-  CSS_TYPE,
-  OUTPUT_TYPE,
   prettierVueOpt,
-  prettierJsOpt,
   prettierCssOpt,
   DSL_CONFIG,
 } from "./consts";
@@ -30,15 +14,10 @@ import genVue from "./genVue";
 
 export default function exportMod(schema, option): IPanelDisplay[] {
   const { prettier, scale, componentsMap, _ } = option;
-  const rootSchema = schema;
-  // const folderName = `components/${schema.fileName}`;
   const folderName = ``;
 
   // imports
   const imports: IImport[] = [];
-
-  // imports mods
-  const importMods: { _import: string; compName: string }[] = [];
 
   // Global Public Functions
   const utils: string[] = [];
@@ -53,19 +32,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
 
   const expressionName = {};
 
-  // lifeCycles
-  const lifeCycles: string[] = [];
-
   const style = {};
-
-  const lifeCycleMap = {
-    _constructor: "created",
-    getDerivedStateFromProps: "beforeUpdate",
-    render: "",
-    componentDidMount: "mounted",
-    componentDidUpdate: "updated",
-    componentWillUnmount: "beforeDestroy",
-  };
 
   const width = option.responsive.width || 750;
   const viewportWidth = option.responsive.viewportWidth || 375;
@@ -73,8 +40,6 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   // 1vw = width / 100
   const _w = width / 100;
   const _ratio = width / viewportWidth;
-
-  let isPage = false;
 
   const transformEventName = (name) => {
     return name.replace("on", "").toLowerCase();
@@ -269,7 +234,6 @@ export default function exportMod(schema, option): IPanelDisplay[] {
 
   const panelDisplay: IPanelDisplay[] = [];
 
-  // const prefix = schema.props && schema.props.className;
   const animationKeyframes = addAnimation(schema);
   let styleStr = `${generateCSS(style)} ${animationKeyframes}`;
   styleStr = prettier.format(styleStr, prettierCssOpt);

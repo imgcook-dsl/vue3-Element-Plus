@@ -67,7 +67,6 @@ const state = reactive({
   height: 100%;
   position: relative;
   background-color: #ffffff;
-  font-family: PingFang SC;
 }
 .class6 {
   height: 100%;
@@ -121,6 +120,7 @@ const state = reactive({
 }
 .tag {
   color: rgba(255, 255, 255, 1);
+  font-family: PingFang SC;
   font-size: 20px;
   line-height: 20px;
   align-self: flex-start;
@@ -149,6 +149,7 @@ const state = reactive({
 }
 .title {
   color: rgba(51, 51, 51, 1);
+  font-family: PingFang SC;
   font-size: 30px;
   line-height: 44px;
   align-self: center;
@@ -181,6 +182,7 @@ const state = reactive({
 }
 .info {
   color: rgba(102, 102, 102, 1);
+  font-family: PingFang SC;
   font-size: 24px;
   font-weight: 300;
   line-height: 28px;
@@ -205,6 +207,7 @@ const state = reactive({
 }
 .num {
   color: rgba(153, 153, 153, 1);
+  font-family: PingFang SC;
   font-size: 22px;
   line-height: 26px;
   align-self: center;
