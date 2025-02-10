@@ -1,7 +1,6 @@
 import { IPanelDisplay } from "./interface";
 import {
   transComponentsMap,
-  initSchema,
   traverse,
   genStyleClass,
   simpleStyle,
@@ -12,80 +11,38 @@ import exportBlock from "./exportBlock";
 
 module.exports = function (schema, option) {
   console.log("window", typeof window);
-
-  // 参数设置
-  option.scale = 750 / ((option.responsive && option.responsive.width) || 750);
-  option.componentsMap = transComponentsMap(option.componentsMap);
-
-  const dslConfig = Object.assign(
-    {},
-    option._.get(schema, "imgcook.dslConfig")
-  );
-
-  option.dslConfig = dslConfig;
-
+  const dslConfig = Object.assign({}, option._.get(schema, "imgcook.dslConfig"));
   if (!dslConfig.isDev) {
     console.log("schema", schema);
     console.log("option", option);
   }
-
   // 初始化全局参数
   initConfig(dslConfig);
 
-  traverse(schema, (json) => {
-    if (json.componentName == "Block") {
-      json.componentName = "Div";
-    }
-  });
-  schema.componentName = "Block";
+  // 参数设置
+  option.scale = 750 / ((option.responsive && option.responsive.width) || 750);
+  option.componentsMap = transComponentsMap(option.componentsMap);
+  option.dslConfig = dslConfig;
 
   // 预处理
-  initSchema(schema);
-
-  // 记录所有blocks
-  const blocks: any[] = [];
-  traverse(schema, (json) => {
-    switch ((json.componentName || "").toLowerCase()) {
-      case "block":
-        blocks.push(json);
-        break;
-    }
-  });
-
-  // 样式名处理：指定命名风格
-  traverse(schema, (json) => {
-    if (json.props && json.props.className) {
-      json.props.className = genStyleClass(
-        json.props.className,
+  traverse(schema, (node) => {
+    if (node && node.props && node.props.className) {
+      // 清理 class 空格
+      node.props.className = String(node.props.className).trim();
+      // 样式名处理：指定命名风格
+      node.props.className = genStyleClass(
+        node.props.className,
         dslConfig.cssStyle
       );
+      // 样式属性拼接
+      node.classString = ` class="${node.props.className}"`;
     }
   });
 
   // 精简默认样式
   simpleStyle(schema);
-
-  // json.classString
-  traverse(schema, (json) => {
-    let className = json.props && json.props.className;
-    if (!className) {
-      return;
-    }
-    json.classString = ` class="${className}"`;
-  });
-
-  // export module code
-  let panelDisplay: IPanelDisplay[] = [];
-
-  blocks.forEach((block) => {
-    const result = exportBlock(block, option);
-    panelDisplay = panelDisplay.concat(result);
-  });
-  // export Page code
-  if (schema.componentName === "Page") {
-    const result = exportBlock(schema, option);
-    panelDisplay = panelDisplay.concat(result);
-  }
+  
+  const panelDisplay: IPanelDisplay[] = exportBlock(schema, option);
 
   return {
     panelDisplay,
@@ -94,6 +51,7 @@ module.exports = function (schema, option) {
   };
 };
 
+// 出码设置
 module.exports.CONFIG_FORM = [
   // { name: 'componentStyle', title: '组件风格', type: 'radio', initValue: 'hooks', options: [{ label: 'Hooks', value: 'hooks' }, { label: 'Class Component', value: 'component' }] },
   // { name: 'globalCss', title: '提取全局样式', help: '', type: 'switch', initValue: false, },
