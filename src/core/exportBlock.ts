@@ -1,15 +1,6 @@
 import { IPanelDisplay, IImport } from "./interface";
-import {
-  parseStyle,
-  generateCSS,
-  isExpression,
-  addAnimation,
-} from "./utils";
-import {
-  prettierVueOpt,
-  prettierCssOpt,
-  DSL_CONFIG,
-} from "./consts";
+import { parseStyle, generateCSS, isExpression, addAnimation, generateStyleStr } from "./utils";
+import { prettierVueOpt, prettierCssOpt, DSL_CONFIG } from "./consts";
 import genVue from "./genVue";
 
 export default function exportMod(schema, option): IPanelDisplay[] {
@@ -159,46 +150,48 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   };
 
   // generate render xml
-  const generateRender = (json) => {
-    const type = json.componentName.toLowerCase();
-    const className = json.props && json.props.className;
-    let classString = json.classString || "";
+  const generateRender = (node, parentStyle) => {
+    const type = node.componentName.toLowerCase();
+    const className = node.props && node.props.className;
+    let classString = node.classString || "";
     if (className) {
-      style[className] = parseStyle(json.props.style);
+      const nodeStyle = parseStyle(node.props.style);
+      if (!parentStyle.children) parentStyle.children = {}
+      parentStyle.children[className] = nodeStyle;
     }
     let xml;
     let props = "";
-    Object.keys(json.props).forEach((key) => {
+    Object.keys(node.props).forEach((key) => {
       if (
         ["className", "style", "text", "src", "lines", "dealGradient"].indexOf(
           key
         ) === -1
       ) {
-        props += ` ${parsePropsKey(key, json.props[key])}=${parseProps(
-          json.props[key]
+        props += ` ${parsePropsKey(key, node.props[key])}=${parseProps(
+          node.props[key]
         )}`;
       }
     });
-    const getXml = (json, label) => {
-      let xml = '';
-      if (json.children && json.children.length) {
-        xml = `<${label}${classString}${props}>${json.children
+    const getXml = (node, label) => {
+      let xml = "";
+      if (node.children && node.children.length) {
+        xml = `<${label}${classString}${props}>${node.children
           .map((node) => {
-            return generateRender(node);
+            return generateRender(node, parentStyle.children[className]);
           })
           .join("")}</${label}>`;
       } else {
         xml = `<${label}${classString}${props} ></${label}>`;
       }
-      return xml
-    }
+      return xml;
+    };
     switch (type) {
       case "text":
-        const innerText = parseProps(json.props.text, true);
+        const innerText = parseProps(node.props.text, true);
         xml = `<span${classString}${props}>${innerText}</span> `;
         break;
       case "image":
-        let source = parseProps(json.props.src, false);
+        let source = parseProps(node.props.src, false);
         if (!source.match('"')) {
           source = `"${source}"`;
           xml = `<img${classString}${props} :src=${source} /> `;
@@ -210,14 +203,14 @@ export default function exportMod(schema, option): IPanelDisplay[] {
       case "page":
       case "block":
       case "component":
-        xml = getXml(json, 'div');
+        xml = getXml(node, "div");
         break;
       default:
         const compName = `el-${_.kebabCase(type)}`;
-        xml = getXml(json, compName);
+        xml = getXml(node, compName);
     }
-    if (json.loop) {
-      xml = parseLoop(json.loop, json.loopArgs, xml);
+    if (node.loop) {
+      xml = parseLoop(node.loop, node.loopArgs, xml);
     }
     return xml || "";
   };
@@ -228,29 +221,30 @@ export default function exportMod(schema, option): IPanelDisplay[] {
     });
   }
 
-  const templateStr = generateRender(schema);
+  const templateStr = generateRender(schema, style);
   datas.push(`constants: ${toString(constants)}`);
   datas = datas.filter((i) => i !== "");
 
   const panelDisplay: IPanelDisplay[] = [];
 
   const animationKeyframes = addAnimation(schema);
-  let styleStr = `${generateCSS(style)} ${animationKeyframes}`;
+  let styleStr = `${generateStyleStr(style)} ${animationKeyframes}`;
   styleStr = prettier.format(styleStr, prettierCssOpt);
   if (DSL_CONFIG.cssFile) {
     panelDisplay.push({
-      panelName: `index.css`,
+      panelName: `index.${DSL_CONFIG.cssType}`,
       panelValue: styleStr,
-      panelType: "css",
+      panelType: DSL_CONFIG.cssType,
       folder: folderName,
     });
-    styleStr = `@import './index.css';`;
+    styleStr = `@import './index.${DSL_CONFIG.cssType}';`;
   }
 
   const vueStr = genVue({
     datas,
     templateStr,
     styleStr,
+    styleLang: DSL_CONFIG.cssType,
     prettier,
   });
 

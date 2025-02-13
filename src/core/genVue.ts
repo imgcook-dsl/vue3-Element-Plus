@@ -21,6 +21,7 @@ const genVue = ({
   datas,
   templateStr,
   styleStr,
+  styleLang,
   prettier,
 }) => `
 <script setup>
@@ -31,7 +32,7 @@ ${handleScript({ datas, prettier })}
 ${handleTemplate(templateStr, prettier)}
 </template>
 
-<style scoped>
+<style lang="${styleLang}" scoped>
 ${styleStr}
 </style>
 `;

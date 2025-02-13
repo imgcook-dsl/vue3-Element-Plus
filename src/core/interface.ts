@@ -17,6 +17,7 @@ export interface IDslConfig {
   scale: number;
   globalCss: boolean;
   cssUnit: "px" | "vw" | "rpx" | "rem";
+  cssType: "css" | "less" | "scss";
   outputStyle: "project" | "component";
   cssStyle: "kebabCase" | "camelCase" | "snakeCase";
   htmlFontSize: number;

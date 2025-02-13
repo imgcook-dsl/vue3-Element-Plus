@@ -55,6 +55,7 @@ export let DSL_CONFIG: IDslConfig = {
   scale: 1,
   globalCss: true,
   cssUnit: 'px',
+  cssType: 'css',
   outputStyle: 'component',
   cssStyle: 'camelCase',
   htmlFontSize: 16,

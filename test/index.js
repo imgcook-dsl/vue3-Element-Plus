@@ -39,6 +39,7 @@ const panelDisplay = runCode(data, {
   cssFile: false,
   cssUnit: "px",
   cssStyle: "camelCase",
+  cssType: 'less',
   globalCss: false,
   htmlFontSize: "16",
   responseHeight: 1334,
@@ -121,8 +122,8 @@ function runCode(data, dslConfig) {
     "utf8"
   );
 
-  const files = vm.run(code)(data, options);
-  // const files = entry(data, options);
+  // const files = vm.run(code)(data, options);
+  const files = entry(data, options);
   // console.log('files', files)
   return files.panelDisplay;
 };

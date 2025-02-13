@@ -416,6 +416,50 @@ export const generateCSS = (style, prefix = "") => {
   return css;
 };
 
+// style obj -> style string
+export const generateStyleStr = (style) => {
+  const styleObj = style.children;
+  let str = "";
+  switch (DSL_CONFIG.cssType) {
+    case 'css': {
+      const redo = (data) => {
+        for(let className in data) {
+          str += `.${className} {`
+          const children = data[className].children;
+          delete data[className].children;
+          for(let key in data[className]) {
+            str += `${parseCamelToLine(key)}: ${data[className][key]};`
+          }
+          str += `}`;
+          redo(children)
+        }
+      }
+      redo(styleObj)
+      break;
+    }
+    case 'less':
+    case 'scss': {
+      const redo = (data) => {
+        for(let className in data) {
+          str += `.${className} {`
+          const children = data[className].children;
+          delete data[className].children;
+          for(let key in data[className]) {
+            str += `${parseCamelToLine(key)}: ${data[className][key]};`
+          }
+          redo(children);
+          str += `}`
+        }
+      }
+      redo(styleObj)
+      break;
+    }
+    default:
+      break;
+  }
+  return str;
+};
+
 // parse loop render
 export const parseLoop = (loop, loopArg, render, params = {}) => {
   let data;
