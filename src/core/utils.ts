@@ -323,18 +323,18 @@ export const parseStyle = (style) => {
       case "borderTopRightRadius":
       case "borderTopLeftRadius":
       case "borderRadius":
-        resultStyle[key] = parseInt(style[key]) * scale;
-        if (style[key]) {
-          resultStyle[key] = parseNumberValue(style[key]);
+        const val = String(style[key]);
+        if (val) {
+          const isNumber = val.match(/\d*\.?\d*/)?.[0].length === val.length;
+          // todo 单位处理
+          resultStyle[key] = isNumber ? `${val}px` : val;
         }
         break;
       default:
         if (style[key] && String(style[key]).includes("px")) {
-          resultStyle[key] = String(style[key]).replace(/[\d\.]+px/g, (v) => {
-            return /^[\d\.]+px$/.test(v) ? parseNumberValue(v) : v;
-          });
+          // todo 单位处理
         }
-        resultStyle[key] = resultStyle[key] || style[key];
+        resultStyle[key] = style[key];
     }
   }
 
