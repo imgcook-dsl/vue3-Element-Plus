@@ -50,7 +50,7 @@ export default {
         "props": {
           "className": "class-10",
           "style": {
-            "backgroundColor": "#f5a623"
+            "background": "#f5a623"
           }
         },
         "children": [],
@@ -64,7 +64,8 @@ export default {
         "children": [{
           "componentName": "Main",
           "props": {
-            "className": "class-9"
+            "className": "class-9",
+            "style": {}
           },
           "children": [{
             "componentName": "Div",
@@ -573,7 +574,8 @@ export default {
       "outputStyle": "component",
       "dslName": "vue3-Element-Plus",
       "accessible": true,
-      "cssFile": false
+      "cssFile": false,
+      "responseHeight": 1334
     }
   },
   "fileName": "index",

@@ -266,78 +266,39 @@ export const genStyleCode = (styles, key = "") => {
     : `${styles}['${key}']`;
 };
 
-export const parseNumberValue = (value) => {
-  const { cssUnit = "px", scale } = DSL_CONFIG;
-  value = String(value).replace(/\b[\d\.]+(px|rem|rpx|vw)?\b/, (v) => {
-    const nv = parseFloat(v);
-    if (!isNaN(nv) && nv !== 0) {
-      return toString(nv);
-    } else {
-      return 0;
-    }
-  });
-  if (/^\-?[\d\.]+$/.test(value)) {
-    value = parseFloat(value);
-    if (cssUnit == "rpx") {
-      value += "rpx";
-    } else if (cssUnit == "rem") {
-      const htmlFontSize = DSL_CONFIG.htmlFontSize || 16;
-      value = parseFloat((value / htmlFontSize).toFixed(2));
-      value = value ? `${value}rem` : value;
-    } else if (cssUnit == "vw") {
-      const _w = 750 / scale;
-      value = ((100 * parseInt(value)) / _w).toFixed(2);
-      value = value == 0 ? value : value + "vw";
-    } else {
-      value += cssUnit;
-    }
-  }
-  return value;
-};
+const mayOnlyNumberAttrs = [
+  "height",
+  "width",
+  "left",
+  "right",
+  "top",
+  "bottom",
+  "marginLeft",
+  "marginRight",
+  "marginTop",
+  "marginBottom",
+  "paddingLeft",
+  "paddingRight",
+  "paddingTop",
+  "paddingBottom",
+  "fontSize",
+  "lineHeight",
+];
 
-// convert to responsive unit, such as vw
 export const parseStyle = (style) => {
   const { scale, cssUnit } = DSL_CONFIG;
   const resultStyle = {};
   for (let key in style) {
-    switch (key) {
-      case "fontSize":
-      case "marginTop":
-      case "marginBottom":
-      case "paddingTop":
-      case "paddingBottom":
-      case "height":
-      case "top":
-      case "bottom":
-      case "width":
-      case "maxWidth":
-      case "left":
-      case "right":
-      case "paddingRight":
-      case "paddingLeft":
-      case "marginLeft":
-      case "marginRight":
-      case "lineHeight":
-      case "borderBottomRightRadius":
-      case "borderBottomLeftRadius":
-      case "borderTopRightRadius":
-      case "borderTopLeftRadius":
-      case "borderRadius":
-        const val = String(style[key]);
-        if (val) {
-          const isNumber = val.match(/\d*\.?\d*/)?.[0].length === val.length;
-          // todo 单位处理
-          resultStyle[key] = isNumber ? `${val}px` : val;
-        }
-        break;
-      default:
-        if (style[key] && String(style[key]).includes("px")) {
-          // todo 单位处理
-        }
-        resultStyle[key] = style[key];
+    let val = String(style[key]);
+    if (!val) continue;
+    // 样式单位处理
+    if (mayOnlyNumberAttrs.includes(key) && /^\d*\.?\d+$/.test(val)) {
+      val = `${val}${cssUnit}`;
+    } else {
+      val = val.replace(/(?<=\d)px/gi, cssUnit);
     }
+    resultStyle[key] = val;
   }
-
   return resultStyle;
 };
 
@@ -421,37 +382,37 @@ export const generateStyleStr = (style) => {
   const styleObj = style.children;
   let str = "";
   switch (DSL_CONFIG.cssType) {
-    case 'css': {
+    case "css": {
       const redo = (data) => {
-        for(let className in data) {
-          str += `.${className} {`
+        for (let className in data) {
+          str += `.${className} {`;
           const children = data[className].children;
           delete data[className].children;
-          for(let key in data[className]) {
-            str += `${parseCamelToLine(key)}: ${data[className][key]};`
+          for (let key in data[className]) {
+            str += `${parseCamelToLine(key)}: ${data[className][key]};`;
           }
           str += `}`;
-          redo(children)
+          redo(children);
         }
-      }
-      redo(styleObj)
+      };
+      redo(styleObj);
       break;
     }
-    case 'less':
-    case 'scss': {
+    case "less":
+    case "scss": {
       const redo = (data) => {
-        for(let className in data) {
-          str += `.${className} {`
+        for (let className in data) {
+          str += `.${className} {`;
           const children = data[className].children;
           delete data[className].children;
-          for(let key in data[className]) {
-            str += `${parseCamelToLine(key)}: ${data[className][key]};`
+          for (let key in data[className]) {
+            str += `${parseCamelToLine(key)}: ${data[className][key]};`;
           }
           redo(children);
-          str += `}`
+          str += `}`;
         }
-      }
-      redo(styleObj)
+      };
+      redo(styleObj);
       break;
     }
     default:

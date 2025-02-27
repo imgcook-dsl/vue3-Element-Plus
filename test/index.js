@@ -34,15 +34,14 @@ const data = JSON.parse(
     .replace("export default ", "")
 );
 const panelDisplay = runCode(data, {
-  dsl: "vue",
-  dslName: "vue",
+  dsl: "Vue3-Element-Plus",
+  dslName: "Vue3-Element-Plus",
   cssFile: false,
   cssUnit: "px",
   cssStyle: "camelCase",
-  cssType: 'less',
+  cssType: 'css',
   globalCss: false,
   htmlFontSize: "16",
-  responseHeight: 1334,
   responseWidth: 750,
   outputStyle: "component",
   componentStyle: "hooks",
