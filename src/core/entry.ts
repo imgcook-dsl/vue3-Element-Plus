@@ -62,7 +62,7 @@ module.exports.CONFIG_FORM = [
   },
   {
     name: "cssStyle",
-    title: "样式类名格式",
+    title: "样式名格式",
     type: "radio",
     initValue: "camelCase",
     options: [
@@ -70,6 +70,13 @@ module.exports.CONFIG_FORM = [
       { label: "中划线", value: "kebabCase" },
       { label: "下划线", value: "snakeCase" },
     ],
+  },
+  {
+    name: "cssUnit",
+    title: "样式单位",
+    type: "radio",
+    initValue: "px",
+    options: ["px", "rem"],
   },
   {
     name: "cssFile",
@@ -80,13 +87,7 @@ module.exports.CONFIG_FORM = [
   },
   // { name: 'componentStyle', title: '组件风格', type: 'radio', initValue: 'hooks', options: [{ label: 'Hooks', value: 'hooks' }, { label: 'Class Component', value: 'component' }] },
   // { name: 'globalCss', title: '提取全局样式', help: '', type: 'switch', initValue: false, },
-  // {
-  //   name: "cssUnit",
-  //   title: "样式单位",
-  //   type: "radio",
-  //   initValue: "px",
-  //   options: ["px", "rem", "vw", "rpx"],
-  // },
+
   // { name: 'inlineStyle', title: '样式引入方式', type: 'radio', initValue: 'module', options: [{ label: 'CSS Module', value: 'module' }, { label: 'Import', value: 'import' }, { label: 'Inline CSS', value: 'module_style' }, { label: 'Inline', value: 'inline' }] },
   // { name: 'outputStyle', title: '导出格式', type: 'radio', initValue: 'component', options: [{ label: '仅组件', value: 'component' }, { label: '完整项目', value: 'project' }] },
   // { name: 'jsx', title: '导出 jsx/tsx', type: 'radio', initValue: 'javascript', options: [{ label: 'javascript', value: 'javascript' }, { label: 'typescript', value: 'typescript' }] },
