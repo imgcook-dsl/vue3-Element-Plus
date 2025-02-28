@@ -2,218 +2,150 @@
 import { reactive } from 'vue';
 
 const state = reactive({
-  loopData: [{}, {}],
   constants: {},
 });
 </script>
 
 <template>
-  <div class="mod">
-    <el-container class="class6">
-      <el-header class="class7"></el-header>
-      <el-container class="class11">
-        <el-aside class="class10"></el-aside>
-        <el-container class="class12">
-          <el-main class="class9">
-            <div
-              class="class1"
-              v-for="(item, index) in state.loopData"
-              :key="index"
-            >
-              <div class="body">
-                <img
-                  class="item"
-                  src="https://static.imgcook.com/img/test/aae95370ae1c11efab3a11063cae6c8a.png"
-                />
-                <div class="tagWrapper">
-                  <span class="tag">整屋</span>
-                </div>
-              </div>
-              <div class="footer">
-                <el-button class="class4">
-                  <span class="class5">查看详情</span>
-                </el-button>
-                <span class="title"
-                  >拥有超多功能的40平米简约小公寓了解一下</span
-                >
-                <div class="group">
-                  <div class="view">
-                    <img
-                      class="iconAvatar"
-                      src="https://static.imgcook.com/img/test/aabe72e0ae1c11efa5cee1656f595e97.png"
-                    />
-                    <span class="info">花花设计工作…</span>
-                  </div>
-                  <div class="view1">
-                    <img
-                      class="iconStar"
-                      src="https://static.imgcook.com/img/test/aabd3a60ae1c11ef98507d64bc18c843.png"
-                    />
-                    <span class="num">168</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </el-main>
-          <el-footer class="class8"></el-footer>
-        </el-container>
-      </el-container>
-    </el-container>
+  <div class="page">
+    <div class="container">
+      <div class="header">
+        <span class="time">9:41</span>
+        <div class="group">
+          <img
+            class="badge"
+            src="https://static.imgcook.com/img/test/a1e4d6e05aee11ef8ea23170a0baccab.png"
+          />
+          <img
+            class="iconWifi"
+            src="https://static.imgcook.com/img/test/a1a3d6405aee11efb7870f01a7076007.png"
+          />
+          <div class="view">
+            <div class="layer"></div>
+          </div>
+          <img
+            class="dot"
+            src="https://static.imgcook.com/img/test/a166a6305aee11efa674c13ff2e7205d.png"
+          />
+        </div>
+      </div>
+      <div class="body">
+        <img
+          class="iconLeft"
+          src="https://static.imgcook.com/img/test/a11af7305aee11efb90f0db9f3474456.png"
+        />
+        <span class="title">订单</span>
+        <div class="group1">
+          <img
+            class="icon"
+            src="https://static.imgcook.com/img/test/a0d7fac05aee11efb70155ddd06c3877.png"
+          />
+          <div class="verticalLine"></div>
+          <img
+            class="iconCircleClose"
+            src="https://static.imgcook.com/img/test/a088a2405aee11efbf16fdf9a4b09dfe.png"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="container1">
+      <span class="caption">共</span>
+      <span class="num">3</span>
+      <span class="caption1">笔订单</span>
+    </div>
+    <div class="container2">
+      <div class="body1">
+        <div class="group2">
+          <span class="title1">2020-2021学费</span>
+          <div class="view1">
+            <span class="title2">学生姓名</span>
+            <span class="decaf">Decaf</span>
+          </div>
+        </div>
+        <div class="group3">
+          <div class="view2">
+            <span class="caption2">缴费信息</span>
+            <span class="caption3">2020-2021学费</span>
+          </div>
+          <div class="view3">
+            <span class="title3">订单状态</span>
+            <span class="title4">待支付</span>
+          </div>
+        </div>
+        <div class="empty"></div>
+        <div class="group4">
+          <div class="view4">
+            <span class="caption4">待支付金额:</span>
+            <span class="time1">2000 元</span>
+          </div>
+          <div class="view5">
+            <span class="caption5">去支付</span>
+            <img
+              class="iconRight"
+              src="https://static.imgcook.com/img/test/a22959f05aee11efa2f96be4e27ebafd.png"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <span class="title5">2020-2021学费</span>
+        <div class="group5">
+          <div class="labelWrapper">
+            <span class="label">已完成</span>
+          </div>
+        </div>
+        <div class="groupItem0">
+          <span class="title6">学生姓名</span>
+          <span class="decaf1">Decaf</span>
+        </div>
+        <div class="groupItem1">
+          <span class="caption6">缴费信息</span>
+          <span class="title7">2020-2021学费</span>
+        </div>
+        <div class="groupItem2">
+          <span class="title8">订单状态</span>
+          <span class="title9">已完成</span>
+        </div>
+        <div class="empty1"></div>
+        <div class="group6">
+          <span class="caption7">已支付金额:</span>
+          <span class="clock">2000 元</span>
+        </div>
+      </div>
+      <div class="submain">
+        <span class="caption8">2020-2021学费</span>
+        <div class="group7">
+          <div class="view6">
+            <img
+              class="iconCircle"
+              src="https://static.imgcook.com/img/test/a26578905aee11ef944eff6ae583fb43.png"
+            />
+            <span class="tag">已失效</span>
+          </div>
+        </div>
+        <div class="groupItem01">
+          <span class="title10">学生姓名</span>
+          <span class="decaf2">Decaf</span>
+        </div>
+        <div class="groupItem11">
+          <span class="caption9">缴费信息</span>
+          <span class="caption10">2020-2021学费</span>
+        </div>
+        <div class="groupItem21">
+          <span class="title11">订单状态</span>
+          <span class="title12">已失效</span>
+        </div>
+        <div class="empty2"></div>
+        <div class="group8">
+          <span class="caption11">已支付金额:</span>
+          <span class="timer">2000 元</span>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
   </div>
 </template>
 
-<style lang="css" scoped>
-.mod {
-  height: 100%;
-  position: relative;
-  background-color: #ffffff;
-}
-.class6 {
-  height: 100%;
-}
-.class7 {
-  background-color: #50e3c2;
-}
-.class11 {
-}
-.class10 {
-  background: #f5a623;
-}
-.class12 {
-}
-.class9 {
-}
-.class1 {
-  display: flex;
-  margin-bottom: 10px;
-  padding-top: 2px;
-  padding-right: 2px;
-  padding-bottom: 2px;
-  padding-left: 2px;
-  width: 100%;
-  position: relative;
-  border: 1px solid #9b9b9b;
-  min-width: 1000px;
-}
-.body {
-  display: flex;
-  justify-content: flex-start;
-  width: 342px;
-  height: 100%;
-  position: relative;
-}
-.item {
-  width: 342px;
-  height: 324px;
-  align-self: flex-start;
-  border-radius: 12px;
-}
-.tagWrapper {
-  display: flex;
-  justify-content: flex-start;
-  padding: 5px 10px;
-  position: absolute;
-  left: 18px;
-  bottom: 18px;
-  background-color: #ffb902;
-  border-radius: 6px;
-}
-.tag {
-  color: rgba(255, 255, 255, 1);
-  font-family: PingFang SC;
-  font-size: 20px;
-  line-height: 20px;
-  align-self: flex-start;
-  white-space: nowrap;
-}
-.footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 0px;
-  padding-top: 3px;
-  padding-right: 12px;
-  padding-bottom: 0px;
-  padding-left: 12px;
-  height: 324px;
-  position: relative;
-  flex: 1px;
-}
-.class4 {
-  width: 100px;
-  height: 28px;
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-}
-.class5 {
-}
-.title {
-  color: rgba(51, 51, 51, 1);
-  font-family: PingFang SC;
-  font-size: 30px;
-  line-height: 44px;
-  align-self: center;
-  width: 306px;
-  height: 88px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  white-space: normal;
-}
-.group {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 10px;
-  width: 306px;
-  align-self: center;
-}
-.view {
-  display: flex;
-  justify-content: space-between;
-  align-self: center;
-  height: 28px;
-  width: 204px;
-}
-.iconAvatar {
-  width: 30px;
-  height: 28px;
-  align-self: center;
-}
-.info {
-  color: rgba(102, 102, 102, 1);
-  font-family: PingFang SC;
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 28px;
-  align-self: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 168px;
-  white-space: nowrap;
-}
-.view1 {
-  display: flex;
-  justify-content: space-between;
-  align-self: center;
-  height: 28px;
-  width: 62px;
-  padding: 1px 0;
-}
-.iconStar {
-  width: 22px;
-  height: 22px;
-  align-self: center;
-}
-.num {
-  color: rgba(153, 153, 153, 1);
-  font-family: PingFang SC;
-  font-size: 22px;
-  line-height: 26px;
-  align-self: center;
-  white-space: nowrap;
-}
-.class8 {
-  background-color: #4a90e2;
-}
+<style lang="less" scoped>
+@import './index.less';
 </style>

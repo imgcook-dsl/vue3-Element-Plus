@@ -30,21 +30,15 @@ const vm = new NodeVM({
 
 const data = JSON.parse(
   fs
-    .readFileSync(path.resolve(__dirname, "./data.js"), "utf8")
+    .readFileSync(path.resolve(__dirname, "./data-h5.js"), "utf8")
     .replace("export default ", "")
 );
 const panelDisplay = runCode(data, {
-  dsl: "Vue3-Element-Plus",
-  dslName: "Vue3-Element-Plus",
-  cssFile: false,
-  cssUnit: "px",
+  cssFile: true,
+  cssUnit: "rem",
   cssStyle: "camelCase",
-  cssType: 'css',
-  globalCss: false,
+  cssType: 'less',
   htmlFontSize: "16",
-  responseWidth: 750,
-  outputStyle: "component",
-  componentStyle: "hooks",
   isDev: true,
 });
 // console.log('panelDisplay', panelDisplay)
