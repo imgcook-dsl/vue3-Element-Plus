@@ -1,0 +1,18 @@
+{
+  "name": "@charyliu/schema2code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.umd.js",
+  "files": [
+    "index.umd.js"
+  ],
+  "scripts": {},
+  "author": "Chary Liu",
+  "repository": "https://github.com/Chary-Liu",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com/"
+  },
+  "devDependencies": {}
+}

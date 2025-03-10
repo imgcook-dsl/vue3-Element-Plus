@@ -10,8 +10,8 @@
     "ts-loader": "^8.2.0",
     "typescript": "^4.4.4",
     "vm2": "^3.5.2",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
     "xtemplate": "^4.6.1"
   },
   "scripts": {
@@ -20,6 +20,7 @@
     "start": "npm run test && npm run view",
     "debug": "webpack --mode=development",
     "build": "webpack --mode=production",
-    "bt": "npm run build && npm run test"
+    "bt": "npm run build && npm run test",
+    "pub": "npm publish ./src/package"
   }
 }
