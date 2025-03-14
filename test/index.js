@@ -38,7 +38,6 @@ const panelDisplay = runCode(data, {
   cssUnit: "rem",
   cssStyle: "camelCase",
   cssType: 'less',
-  htmlFontSize: "16",
   isDev: true,
 });
 // console.log('panelDisplay', panelDisplay)
@@ -102,12 +101,12 @@ function runCode(data, dslConfig) {
       },
     },
     _: _,
-    responsive: {
-      width: 750,
-      viewportWidth: 375,
-    },
-    helper,
-    componentsMap,
+    // responsive: {
+    //   width: 750,
+    //   viewportWidth: 375,
+    // },
+    // helper,
+    // componentsMap,
   };
 
   const code = fs.readFileSync(

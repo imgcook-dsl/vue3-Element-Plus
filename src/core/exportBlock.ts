@@ -4,7 +4,7 @@ import { prettierVueOpt, prettierCssOpt, DSL_CONFIG } from "./consts";
 import genVue from "./genVue";
 
 export default function exportMod(schema, option): IPanelDisplay[] {
-  const { prettier, scale, componentsMap, _ } = option;
+  const { prettier, componentsMap, _ } = option;
   const folderName = ``;
 
   // imports
@@ -24,13 +24,6 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   const expressionName = {};
 
   const style = {};
-
-  const width = option.responsive.width || 750;
-  const viewportWidth = option.responsive.viewportWidth || 375;
-
-  // 1vw = width / 100
-  const _w = width / 100;
-  const _ratio = width / viewportWidth;
 
   const transformEventName = (name) => {
     return name.replace("on", "").toLowerCase();

@@ -286,7 +286,7 @@ const mayOnlyNumberAttrs = [
 ];
 
 export const parseStyle = (style) => {
-  const { scale, cssUnit } = DSL_CONFIG;
+  const { cssUnit } = DSL_CONFIG;
   const resultStyle = {};
   for (let key in style) {
     let val = String(style[key]);

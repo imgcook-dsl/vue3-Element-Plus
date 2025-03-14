@@ -20,7 +20,6 @@ module.exports = function (schema, option) {
   initConfig(dslConfig);
 
   // 参数设置
-  option.scale = 750 / ((option.responsive && option.responsive.width) || 750);
   option.componentsMap = transComponentsMap(option.componentsMap);
   option.dslConfig = dslConfig;
 
