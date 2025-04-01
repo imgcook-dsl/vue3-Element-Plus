@@ -32,7 +32,7 @@ module.exports = [
         name: 'ParseSchema', // UMD 全局变量名
         type: 'umd', 
       },
-      globalObject: 'this',
+      globalObject: 'globalThis',
     },
   },
 ];
