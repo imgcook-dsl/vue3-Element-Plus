@@ -1,12 +1,10 @@
 import { prettierHtmlOpt, prettierJsOpt } from "./consts";
 
-const handleScript = ({ datas, prettier }) => {
+const handleScript = ({ prettier }) => {
   const rawStr = `
     import { reactive } from 'vue'
 
-    const state = reactive({
-      ${datas.join(",\n")}
-    })
+    const state = reactive({})
   `;
   return prettier.format(rawStr, prettierJsOpt);
 };
@@ -18,14 +16,13 @@ const handleTemplate = (templateStr, prettier) => {
 }
 
 const genVue = ({
-  datas,
   templateStr,
   styleStr,
   styleLang,
   prettier,
 }) => `
 <script setup>
-${handleScript({ datas, prettier })}
+${handleScript({ prettier })}
 </script>
 
 <template>
