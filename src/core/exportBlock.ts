@@ -1,11 +1,5 @@
 import { IPanelDisplay, IImport } from "./interface";
-import {
-  parseStyle,
-  generateCSS,
-  isExpression,
-  addAnimation,
-  generateStyleStr,
-} from "./utils";
+import { parseStyle, generateStyleStr } from "./utils";
 import { prettierVueOpt, prettierCssOpt, DSL_CONFIG } from "./consts";
 import genVue from "./genVue";
 
@@ -64,8 +58,7 @@ export default function exportMod(schema, option): IPanelDisplay[] {
 
   const panelDisplay: IPanelDisplay[] = [];
 
-  const animationKeyframes = addAnimation(schema);
-  let styleStr = `${generateStyleStr(style)} ${animationKeyframes}`;
+  let styleStr = generateStyleStr(style);
   styleStr = prettier.format(styleStr, prettierCssOpt);
   if (DSL_CONFIG.cssFile) {
     panelDisplay.push({
