@@ -34,7 +34,8 @@ const data = JSON.parse(
     .replace("export default ", "")
 );
 const panelDisplay = runCode(data, {
-  framework: 'react',
+  framework: 'vue',
+  jsxOrTsx: 'jsx',
   cssFile: true,
   cssUnit: "rem",
   cssStyle: "camelCase",

@@ -1,19 +1,16 @@
-import { IPanelDisplay, IImport } from "./interface";
-import { parseStyle, generateStyleStr } from "./utils";
+import { IPanelDisplay } from "../interface";
+import { parseStyle, generateStyleStr } from "../utils";
 import {
   prettierVueOpt,
   prettierCssOpt,
   DSL_CONFIG,
-  prettierJsOpt,
-} from "./consts";
-import { genVue } from "./genVue";
+} from "../consts";
+import { generateContent } from "./generateContent";
 import { preprocess } from "./preprocess";
-import { genReact } from "./genReact";
 
-export default function exportMod(schema, option): IPanelDisplay[] {
+export function exportVue(schema, option): IPanelDisplay[] {
   const { prettier, componentsMap, _ } = option;
   const folderName = ``;
-  const imports: IImport[] = [];
 
   // generate render xml
   const generateRenderXml = (node, parentStyle) => {
@@ -69,58 +66,27 @@ export default function exportMod(schema, option): IPanelDisplay[] {
   styleStr = prettier.format(styleStr, prettierCssOpt);
 
   const panelDisplay: IPanelDisplay[] = [];
-
-  switch (DSL_CONFIG.framework) {
-    case "vue": {
-      if (DSL_CONFIG.cssFile) {
-        panelDisplay.push({
-          panelName: `index.${DSL_CONFIG.cssType}`,
-          panelValue: styleStr,
-          panelType: DSL_CONFIG.cssType,
-          folder: folderName,
-        });
-        styleStr = `@import './index.${DSL_CONFIG.cssType}';`;
-      }
-      const vueStr = genVue({
-        xmlStr,
-        styleStr,
-        styleLang: DSL_CONFIG.cssType,
-        prettier,
-      });
-      panelDisplay.push({
-        panelName: `index.vue`,
-        panelValue: prettier.format(vueStr, prettierVueOpt),
-        panelType: "vue",
-        folder: folderName,
-        panelImports: imports,
-      });
-      break;
-    }
-    case "react": {
-      const reactStr = genReact({
-        xmlStr,
-        styleLang: DSL_CONFIG.cssType,
-        prettier,
-      });
-      // 组件
-      panelDisplay.push({
-        panelName: `index.${DSL_CONFIG.jsxOrTsx}`,
-        panelValue: prettier.format(reactStr, prettierJsOpt),
-        panelType: "react",
-        folder: folderName,
-        panelImports: imports,
-      });
-      // 样式
-      panelDisplay.push({
-        panelName: `index.${DSL_CONFIG.cssType}`,
-        panelValue: styleStr,
-        panelType: DSL_CONFIG.cssType,
-        folder: folderName,
-      });
-      break;
-    }
-    default:
-      break;
+  if (DSL_CONFIG.cssFile) {
+    panelDisplay.push({
+      panelName: `index.${DSL_CONFIG.cssType}`,
+      panelValue: styleStr,
+      panelType: DSL_CONFIG.cssType,
+      folder: folderName,
+    });
+    styleStr = `@import './index.${DSL_CONFIG.cssType}';`;
   }
+  const vueStr = generateContent({
+    xmlStr,
+    styleStr,
+    styleLang: DSL_CONFIG.cssType,
+    prettier,
+  });
+  panelDisplay.push({
+    panelName: `index.vue`,
+    panelValue: prettier.format(vueStr, prettierVueOpt),
+    panelType: "vue",
+    folder: folderName,
+  });
+  
   return panelDisplay;
 }

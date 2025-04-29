@@ -1,5 +1,5 @@
-import { DSL_CONFIG } from "./consts";
-import { genStyleClass, simpleStyle } from "./utils";
+import { DSL_CONFIG } from "../consts";
+import { genStyleClass, simpleStyle } from "../utils";
 
 export const preprocess = (node) => {
   // 清理 class 空格

@@ -1,4 +1,4 @@
-import { prettierHtmlOpt } from "./consts";
+import { prettierHtmlOpt } from "../consts";
 
 const handleTemplate = (templateStr, prettier) => {
   templateStr = templateStr.replaceAll('>', '>\n');
@@ -6,7 +6,7 @@ const handleTemplate = (templateStr, prettier) => {
   return templateStr.replaceAll('> ', '>');
 }
 
-export const genReact = ({
+export const generateContent = ({
   xmlStr,
   styleLang,
   prettier,

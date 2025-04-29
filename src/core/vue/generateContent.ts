@@ -1,4 +1,4 @@
-import { prettierHtmlOpt, prettierJsOpt } from "./consts";
+import { prettierHtmlOpt, prettierJsOpt } from "../consts";
 
 const handleScript = ({ prettier }) => {
   const rawStr = `
@@ -15,7 +15,7 @@ const handleTemplate = (templateStr, prettier) => {
   return templateStr.replaceAll('> ', '>');
 }
 
-export const genVue = ({
+export const generateContent = ({
   xmlStr,
   styleStr,
   styleLang,

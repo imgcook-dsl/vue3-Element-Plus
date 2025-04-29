@@ -1,8 +1,8 @@
 import { IPanelDisplay } from "./interface";
 import { transComponentsMap } from "./utils";
-import { initConfig } from "./consts";
-
-import exportBlock from "./exportBlock";
+import { DSL_CONFIG, initConfig } from "./consts";
+import { exportVue } from "./vue";
+import { exportReact } from "./react";
 
 module.exports = function (schema, option) {
   console.log("window", typeof window);
@@ -22,7 +22,17 @@ module.exports = function (schema, option) {
   option.componentsMap = transComponentsMap(option.componentsMap);
   option.dslConfig = dslConfig;
 
-  const panelDisplay: IPanelDisplay[] = exportBlock(schema, option);
+  // 按框架导出
+  let panelDisplay: IPanelDisplay[] = [];
+  switch (DSL_CONFIG.framework) {
+    case "vue":
+      panelDisplay = exportVue(schema, option);
+      break;
+    case "react":
+      panelDisplay = exportReact(schema, option);
+    default:
+      break;
+  }
 
   return {
     panelDisplay,
@@ -33,6 +43,14 @@ module.exports = function (schema, option) {
 
 // 出码设置-imgcook
 module.exports.CONFIG_FORM = [
+  {
+    name: "cssFile",
+    title: "提取样式文件",
+    help: "",
+    type: "switch",
+    initValue: false,
+    visible: (config) => config.framework == "vue",
+  },
   {
     name: "cssType",
     title: "样式类型",
@@ -57,14 +75,6 @@ module.exports.CONFIG_FORM = [
     type: "radio",
     initValue: "px",
     options: ["px", "rem"],
-  },
-  {
-    name: "cssFile",
-    title: "提取样式文件",
-    help: "",
-    type: "switch",
-    initValue: false,
-    visible: (config) => config.framework == "vue",
   },
 ];
 
