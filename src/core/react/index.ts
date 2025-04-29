@@ -1,10 +1,6 @@
 import { IPanelDisplay } from "../interface";
 import { parseStyle, generateStyleStr } from "../utils";
-import {
-  prettierCssOpt,
-  DSL_CONFIG,
-  prettierJsOpt,
-} from "../consts";
+import { prettierCssOpt, DSL_CONFIG, prettierJsOpt } from "../consts";
 import { preprocess } from "./preprocess";
 import { generateContent } from "./generateContent";
 
@@ -45,8 +41,10 @@ export function exportReact(schema, option): IPanelDisplay[] {
         xml = `<span${classString}>${node.props.text}</span> `;
         break;
       case "image":
-        const src = node.props.src.startsWith("http") ? node.props.src : `require("${node.props.src}")`;
-        xml = `<img${classString} src="${src}" /> `;
+        const src = node.props.src.startsWith("http")
+          ? `"${node.props.src}"`
+          : `{require("${node.props.src}")}`;
+        xml = `<img${classString} src=${src} /> `;
         break;
       case "div":
       case "page":
@@ -85,6 +83,6 @@ export function exportReact(schema, option): IPanelDisplay[] {
     panelType: DSL_CONFIG.cssType,
     folder: folderName,
   });
-  
+
   return panelDisplay;
 }
