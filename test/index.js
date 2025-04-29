@@ -34,6 +34,7 @@ const data = JSON.parse(
     .replace("export default ", "")
 );
 const panelDisplay = runCode(data, {
+  framework: 'react',
   cssFile: true,
   cssUnit: "rem",
   cssStyle: "camelCase",

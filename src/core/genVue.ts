@@ -15,8 +15,8 @@ const handleTemplate = (templateStr, prettier) => {
   return templateStr.replaceAll('> ', '>');
 }
 
-const genVue = ({
-  templateStr,
+export const genVue = ({
+  xmlStr,
   styleStr,
   styleLang,
   prettier,
@@ -26,12 +26,10 @@ ${handleScript({ prettier })}
 </script>
 
 <template>
-${handleTemplate(templateStr, prettier)}
+${handleTemplate(xmlStr, prettier)}
 </template>
 
 <style lang="${styleLang}" scoped>
 ${styleStr}
 </style>
 `;
-
-export default genVue;

@@ -14,7 +14,8 @@ export interface IImport {
 }
 
 export interface IDslConfig {
-  globalCss: boolean;
+  framework: 'vue' | 'react';
+  jsxOrTsx: 'jsx' | 'tsx';
   cssUnit: "px" | "rem";
   cssType: "css" | "less" | "scss";
   outputStyle: "project" | "component";

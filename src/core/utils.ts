@@ -386,13 +386,12 @@ export const generateStyleStr = (style) => {
       const redo = (data) => {
         for (let className in data) {
           str += `.${className} {`;
-          const children = data[className].children;
-          delete data[className].children;
           for (let key in data[className]) {
+            if (key == 'children') continue;
             str += `${parseCamelToLine(key)}: ${data[className][key]};`;
           }
           str += `}`;
-          redo(children);
+          redo(data[className].children);
         }
       };
       redo(styleObj);
@@ -403,12 +402,11 @@ export const generateStyleStr = (style) => {
       const redo = (data) => {
         for (let className in data) {
           str += `.${className} {`;
-          const children = data[className].children;
-          delete data[className].children;
           for (let key in data[className]) {
+            if (key == 'children') continue;
             str += `${parseCamelToLine(key)}: ${data[className][key]};`;
           }
-          redo(children);
+          redo(data[className].children);
           str += `}`;
         }
       };

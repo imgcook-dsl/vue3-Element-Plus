@@ -1,4 +1,4 @@
-import { IPanelDisplay, IDslConfig } from './interface';
+import { IDslConfig } from './interface';
 
 export const prettierVueOpt = {
   parser: 'vue',
@@ -52,7 +52,8 @@ export const OUTPUT_TYPE = {
 
 // 记录全局参数配置，初始化时直接修改
 export let DSL_CONFIG: IDslConfig = {
-  globalCss: true,
+  framework: 'vue',
+  jsxOrTsx: 'jsx',
   cssUnit: 'px',
   cssType: 'css',
   outputStyle: 'component',
