@@ -14,11 +14,12 @@ export interface IImport {
 }
 
 export interface IDslConfig {
-  framework: 'vue' | 'react';
+  framework: 'html' | 'vue' | 'react';
   jsxOrTsx: 'jsx' | 'tsx';
   cssUnit: "px" | "rem";
   cssType: "css" | "less" | "scss";
   outputStyle: "project" | "component";
   cssStyle: "kebabCase" | "camelCase" | "snakeCase";
   cssFile: boolean;
+  jsFile: boolean;
 }

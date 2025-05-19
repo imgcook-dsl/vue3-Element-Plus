@@ -3,6 +3,7 @@ import { transComponentsMap } from "./utils";
 import { DSL_CONFIG, initConfig } from "./consts";
 import { exportVue } from "./vue";
 import { exportReact } from "./react";
+import { exportHtml } from "./html";
 
 module.exports = function (schema, option) {
   console.log("window", typeof window);
@@ -25,6 +26,9 @@ module.exports = function (schema, option) {
   // 按框架导出
   let panelDisplay: IPanelDisplay[] = [];
   switch (DSL_CONFIG.framework) {
+    case "html":
+      panelDisplay = exportHtml(schema, option);
+      break;
     case "vue":
       panelDisplay = exportVue(schema, option);
       break;
@@ -44,19 +48,12 @@ module.exports = function (schema, option) {
 // 出码设置-imgcook
 module.exports.CONFIG_FORM = [
   {
-    name: "cssFile",
-    title: "提取样式文件",
-    help: "",
-    type: "switch",
-    initValue: false,
-    visible: (config) => config.framework == "vue",
-  },
-  {
     name: "cssType",
     title: "样式类型",
     type: "radio",
     initValue: "css",
     options: ["css", "scss", "less"],
+    visible: (config) => ["vue", "react"].includes(config.framework),
   },
   {
     name: "cssStyle",
@@ -76,6 +73,14 @@ module.exports.CONFIG_FORM = [
     initValue: "px",
     options: ["px", "rem"],
   },
+  {
+    name: "cssFile",
+    title: "提取样式文件",
+    help: "",
+    type: "switch",
+    initValue: false,
+    visible: (config) => ["html", "vue"].includes(config.framework),
+  },
 ];
 
 // 出码设置-figma
@@ -85,7 +90,7 @@ module.exports.EXPORT_CONFIG = [
     title: "框架",
     type: "radio",
     initValue: "vue",
-    options: ["vue", "react"],
+    options: ["html", "vue", "react"],
   },
   {
     name: "jsxOrTsx",
@@ -96,4 +101,12 @@ module.exports.EXPORT_CONFIG = [
     visible: (config) => config.framework == "react",
   },
   ...module.exports.CONFIG_FORM,
+  {
+    name: "jsFile",
+    title: "提取js文件",
+    help: "",
+    type: "switch",
+    initValue: false,
+    visible: (config) => config.framework == "html",
+  },
 ];

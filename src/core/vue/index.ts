@@ -62,7 +62,7 @@ export function exportVue(schema, option): IPanelDisplay[] {
 
   const style = {};
   const xmlStr = generateRenderXml(schema, style);
-  let styleStr = generateStyleStr(style);
+  let styleStr = generateStyleStr(style, DSL_CONFIG.cssType);
   styleStr = prettier.format(styleStr, prettierCssOpt);
 
   const panelDisplay: IPanelDisplay[] = [];

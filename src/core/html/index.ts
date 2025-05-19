@@ -1,11 +1,11 @@
 import { IPanelDisplay } from "../interface";
 import { parseStyle, generateStyleStr } from "../utils";
-import { prettierCssOpt, DSL_CONFIG, prettierJsOpt } from "../consts";
-import { preprocess } from "./preprocess";
+import { prettierHtmlOpt, prettierCssOpt, DSL_CONFIG } from "../consts";
 import { generateContent } from "./generateContent";
+import { preprocess } from "./preprocess";
 
-export function exportReact(schema, option): IPanelDisplay[] {
-  const { prettier, _ } = option;
+export function exportHtml(schema, option): IPanelDisplay[] {
+  const { prettier, componentsMap, _ } = option;
   const folderName = ``;
 
   // generate render xml
@@ -41,10 +41,7 @@ export function exportReact(schema, option): IPanelDisplay[] {
         xml = `<span${classString}>${node.props.text}</span> `;
         break;
       case "image":
-        const src = node.props.src.startsWith("http")
-          ? `"${node.props.src}"`
-          : `{require("${node.props.src}")}`;
-        xml = `<img${classString} src=${src} /> `;
+        xml = `<img${classString} src="${node.props.src}" /> `;
         break;
       case "div":
       case "page":
@@ -53,34 +50,47 @@ export function exportReact(schema, option): IPanelDisplay[] {
         xml = getXml(node, "div");
         break;
       default:
-        break;
+        xml = getXml(node, "div");
     }
     return xml || "";
   };
 
   const style = {};
   const xmlStr = generateRenderXml(schema, style);
-  let styleStr = generateStyleStr(style, DSL_CONFIG.cssType);
+  let styleStr = generateStyleStr(style, 'css');
   styleStr = prettier.format(styleStr, prettierCssOpt);
 
   const panelDisplay: IPanelDisplay[] = [];
-  const reactStr = generateContent({
-    xmlStr,
-    styleLang: DSL_CONFIG.cssType,
-    prettier,
-  });
-  // 组件
+  if (DSL_CONFIG.cssFile) {
+    panelDisplay.push({
+      panelName: `index.css`,
+      panelValue: styleStr,
+      panelType: DSL_CONFIG.cssType,
+      folder: folderName,
+    });
+    styleStr = `<link rel="stylesheet" type="text/css" href="index.css">`;
+  } else {
+    styleStr = `<style>${styleStr}</style>`;
+  }
+
+  let jsStr = `console.log('hello world!')`
+  if (DSL_CONFIG.jsFile) {
+    panelDisplay.push({
+      panelName: `index.js`,
+      panelValue: jsStr,
+      panelType: 'js',
+      folder: folderName,
+    });
+    jsStr = `<script type="module" src="index.js"></script>`;
+  } else {
+    jsStr = `<script>${jsStr}</script>`;
+  }
+
+  const htmlStr = generateContent({ xmlStr, styleStr, jsStr });
   panelDisplay.push({
-    panelName: `index.${DSL_CONFIG.jsxOrTsx}`,
-    panelValue: prettier.format(reactStr, prettierJsOpt),
-    panelType: "react",
-    folder: folderName,
-  });
-  // 样式
-  panelDisplay.push({
-    panelName: `index.${DSL_CONFIG.cssType}`,
-    panelValue: styleStr,
-    panelType: DSL_CONFIG.cssType,
+    panelName: `index.html`,
+    panelValue: prettier.format(htmlStr, prettierHtmlOpt),
+    panelType: "html",
     folder: folderName,
   });
 
